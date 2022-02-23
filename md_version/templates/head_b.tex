@@ -1,0 +1,304 @@
+%%%%%%%%%%%%%%%%%%%%%
+% ⚠ Do not edit ⚠   %
+% this file at all! %
+%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%
+% Packages %
+%%%%%%%%%%%%
+
+\usepackage{scrhack}                               % Hack from the koma-script for various packages to play more nicely with this class.
+%\usepackage[doublespacing]{setspace}               % Fine-tune the spacing between lines, and double-space everything.
+\usepackage{xstring}                               % Used to perform substitution, using \StrSubstitut.
+\usepackage[figure, table, lstlisting]{totalcount} % To conditionally insert list of figures, tables, and listings.
+% https://tex.stackexchange.com/a/297657
+% https://tex.stackexchange.com/a/297655
+\usepackage[english]{datetime2}                    % To extract the month and year from the date.
+\usepackage{chngcntr}                              % To obtain a "global numbering" of tables and figures.
+
+%%%%%%%%%%%%%%
+% Cover page %
+%%%%%%%%%%%%%%
+
+
+% We add some space after the subtitle if it
+% is defined, after the title if not.
+\ifdefined\yoursubtitle
+    \makeatletter
+        \apptocmd{\@subtitle}{\par}{}{}
+    \makeatother
+    \else
+    \let\yoursubtitle\par\vspace{1em}
+\fi
+
+% We add "By", followed by a new line,
+% before your name, and change the font 
+% to 16pts.
+\makeatletter
+    \pretocmd{\@author}{By \\}{}{}
+\makeatother
+
+% The following extract the month and year
+% from the date, and display them in the title.
+\DTMsavedate{mydate}{\yourdate}
+\makeatletter
+    \renewcommand{\yourdate}{%
+        \DTMenglishmonthname{\@dtm@month}\\
+        \@dtm@year
+    }
+\makeatother
+
+% This add some information between 
+% your name and the date.
+\makeatletter
+    \pretocmd{\yourdate}{%
+        \vspace{1em}
+        Submitted to the Faculty of the Graduate School\\
+        of Augusta University in partial fulfillment\\
+        of the Requirements of the Degree of\\
+        \iftoggle{ms}{Master of Science}{Doctor of Philosophy} % This toggle will display either 
+                                                               % "Master of Science" or "Doctor of Philosophy"
+                                                               % based on the choice made in info.tex.
+        \vspace{1em}\par
+    }{}{}
+\makeatother
+
+% This add copyright information, 
+% abusing the "publisher" field.
+\makeatletter
+    \publishers{%
+        \textcopyright~\@dtm@year{} \yourname%
+        \ifdefined\yourlicence{\\[.1em] \yourlicence}
+        \else
+        \relax
+        \fi
+        \pagenumbering{gobble} % No page number on next page.
+    }
+\makeatother
+
+%%%%%%%%%%%
+% Margins %
+%%%%%%%%%%%
+
+% We do not want to add any additional margin space
+% on the cover page
+\renewcommand*{\coverpagetopmargin}{2in}
+\renewcommand*{\coverpageleftmargin}{1.5in}
+\renewcommand*{\coverpagerightmargin}{1in}
+\renewcommand*{\coverpagebottommargin}{1in}
+
+% We set all the margins to 0.
+% Sorry about that, I know it is not pretty,
+% but that is the only way I could content
+% TGS's requirements on the template.
+\setlength{\topmargin}{0pt}
+\setlength{\headheight}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\columnsep}{0pt}
+\setlength{\marginparsep}{0pt}
+\setlength{\marginparpush}{0pt}
+\setlength{\marginparwidth}{0pt}
+
+% No space above chapters.
+% https://tex.stackexchange.com/a/231940
+\RedeclareSectionCommand[
+  beforeskip=0pt
+]{chapter}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% Headers and footers %
+%%%%%%%%%%%%%%%%%%%%%%%
+
+% We only want page numbers, no headers.
+\pagestyle{plain}
+% No page number for the first part of the document.
+\thispagestyle{empty}
+
+
+%%%%%%%%%%
+% Titles %
+%%%%%%%%%%
+
+% Chapter titles should be centered.
+\renewcommand\raggedchapter{\centering}
+
+%%%%%%%%%%%%%
+% Meta-data %
+%%%%%%%%%%%%%
+
+\hypersetup{
+    pdftitle={\yourtitle},
+    pdfauthor={\yourname},
+    pdflang={en},
+    pdfkeywords={\yourkeywords},
+    pdfauthor={\yourname}
+}
+
+
+%%%%%%%%%
+% Fonts %
+%%%%%%%%%
+
+% Some of the fonts parameters are set-up in the info.md file.
+% The title is in small caps.
+\setkomafont{title}{\scshape\Large}
+% Figures and legends should be 10-point font. 
+\addtokomafont{caption}{\small}
+\addtokomafont{captionlabel}{\small}
+% Subtitle and title should use the same font size.
+\setkomafont{subtitle}{\scshape\Large}
+% Author name should be 16 pts
+\addtokomafont{author}{\Large}
+% Date should be in smaller font.
+\setkomafont{date}{\large}
+
+
+%%%%%%%%%%%
+% Spacing %
+%%%%%%%%%%%
+
+
+% Everything must be double spaced
+\linespread{2}
+% *but* the sectioning commands
+% (titles, subtitles, etc.).
+% https://tex.stackexchange.com/a/365269/
+\addtokomafont{disposition}{\linespread{1}}
+% Since biblatex is loaded quite late in the template 
+% (cf. https://github.com/jgm/pandoc-templates/blob/master/default.latex )
+% we defer this command, that let the line space in the references be only 
+% single-spaced, to the end of the preamble.
+\AtEndPreamble{
+    \AtNextBibliography{\linespread{1}}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Dedication, a.k.a. Acknowledgements % 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pretocmd{\dedication}{%
+    \chapter*{Acknowledgements}
+    \pagenumbering{gobble}      % No page number
+    \par                        % New paragraph
+    {
+        #1                      % Actual text
+    }
+    \clearpage                  % New page
+}{}{}
+
+
+%%%%%%%%%%%%
+% Abstract % 
+%%%%%%%%%%%%
+
+
+% https://tex.stackexchange.com/a/40547
+% https://tex.stackexchange.com/a/68227
+\makeatletter
+    \newenvironment{abstract}{%
+        % At the beginning of the environment:
+        \pagenumbering{gobble} % No page number.
+        \chapter*{Abstract}
+        {                       % This group must be single-spaced.
+            \linespread{1}
+            \textsc{\yourname} \\
+            \@title \\
+            Under the direction of \textsc{\youradvisor}
+        }
+        \\[3em]
+      }%
+     {%
+      %  At the end of the environment:
+      \\[3em] \textsc{Keywords}: \StrSubstitute{\yourkeywords}{,}{\textperiodcentered} % We list the keywords.
+      \clearpage
+      \pagestyle{empty}
+      % The table of content
+      % follows immediately (and automatically)
+      % the abstract.
+      \renewcaptionname{english}%
+        {\contentsname}%
+        {Table of Contents}  % We rename the table of contents.
+      \tableofcontents        % Table of contents.
+      \iftotaltables          % If there are tables in the document…
+        \listoftables         % …write out the List of Tables
+      \fi
+      \iftotalfigures         % If there are figures in the document…
+        \listoffigures        % …write out the List of Figures
+      \fi
+      \iftotallstlistings     % If there are listings in the document…
+        \lstlistoflistings    % …write out the List of Listings.
+      \fi
+}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Names of tables and captions %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Since biblatex is loaded quite late in the template 
+% (cf. https://github.com/jgm/pandoc-templates/blob/master/default.latex )
+% we defer those commands, that let the references being in the table of contents.
+% and make sure that the bibliography is treated as a chapter, and not a section.
+\AtEndPreamble{
+    \DeclarePrintbibliographyDefaults{heading=bibintoc} % We add the references in the table of contents
+    \defbibheading{bibliography}[\bibname]{%
+    \chapter*{#1}%
+    \markboth{#1}{#1}}
+}
+% https://tex.stackexchange.com/a/544718
+% We rename the simple "Listings" to "List of Listings"
+\renewcommand{\lstlistlistingname}{List of Listings}
+% https://stackoverflow.com/a/2709986
+
+% Counters for figures, tables and listings
+% are global, and not per chapter.
+% https://tex.stackexchange.com/q/371184
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+\lstset{numberbychapter=false}
+% https://tex.stackexchange.com/a/595356
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Mention (draft annotation) %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifdefined\yourmention
+\usepackage{draftwatermark}
+\SetWatermarkText{\yourmention}
+\SetWatermarkScale{2.27}
+\SetWatermarkColor{augustagrey!20}
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%
+% Debugging packages %
+%%%%%%%%%%%%%%%%%%%%%%
+
+% \usepackage{showframe} % show the page layout
+\usepackage{layouts}   
+% Allow to use 
+% \printinunitsof{in}{\pagevalues}
+% to "see" the margins.
+
+% The following commands allows to "see" the font sizes.
+% cf. https://tex.stackexchange.com/a/24600
+% https://texfaq.org/FAQ-csname
+\makeatletter
+\newcommand\thefontsize[1]{\csname #1\endcsname #1 is equivalent to \f@size pt\par}
+\makeatother
+
+\newcommand{\getfontsize}{
+    \thefontsize{tiny}
+    \thefontsize{scriptsize}
+    \thefontsize{footnotesize}
+    \thefontsize{small}
+    \thefontsize{normalsize}
+    \thefontsize{large}
+    \thefontsize{Large}
+    \thefontsize{LARGE}
+    \thefontsize{huge}
+    \thefontsize{Huge}
+    \normalsize
+}
+

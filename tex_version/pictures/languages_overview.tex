@@ -1,0 +1,163 @@
+% !TeX document-id = {543bad56-0a75-4f2c-a11d-a94f42751e3d}
+% !TeX TXS-program:compile = txs:///xelatex/[--shell-escape]
+\documentclass[border=20pt,varwidth=\maxdimen]{standalone}
+\renewcommand\familydefault{\sfdefault} % Default family: serif 
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc} 
+\usetikzlibrary{arrows, decorations.markings,positioning,backgrounds,shapes}
+\usetikzlibrary{patterns}
+\usetikzlibrary{fit}
+\usepackage[normalem]{ulem}
+\usepackage{minted}
+
+% Colors for c, assembly and machine codes.
+\definecolor{c}{HTML}{002f55}
+\definecolor{a}{HTML}{A5ACAF}
+\definecolor{m}{HTML}{00AEEF}
+% Colors for compiler and assembler.
+\definecolor{compiler}{HTML}{64A0C8}
+\definecolor{assembler}{HTML}{44D62C}
+
+\begin{document}
+% C Code
+\newsavebox{\ccode}
+\begin{lrbox}{\ccode}
+	\RecustomVerbatimEnvironment{Verbatim}{BVerbatim}{}%
+	\begin{minted}{c}
+printf("Hello, ");
+printf("World!");
+\end{minted}
+\end{lrbox}
+% Python Code 
+\newsavebox{\pycode}
+\begin{lrbox}{\pycode}
+	\RecustomVerbatimEnvironment{Verbatim}{BVerbatim}{}%
+	\begin{minted}{Python}
+print("Hello, ");
+print("World!");
+	\end{minted}
+\end{lrbox}
+% Python Code 
+\newsavebox{\cscode}
+\begin{lrbox}{\cscode}
+	\RecustomVerbatimEnvironment{Verbatim}{BVerbatim}{}%
+	\begin{minted}{csharp}
+Console.Write("Hello, ");
+Console.Write("World!");
+\end{minted}
+\end{lrbox}
+% IL code
+% Taken from https://www.developer.com/microsoft/c-sharp/c-and-intermediate-language-il/
+\newsavebox{\ilcode}
+\begin{lrbox}{\ilcode}
+	\RecustomVerbatimEnvironment{Verbatim}{BVerbatim}{}%
+	\begin{minted}{text}
+.maxstack  8
+IL_0000:  ldstr "Hello"
+IL_0005:  call  void [mscorlib]
+System.Console::WriteLine(string)
+\end{minted}
+\end{lrbox}
+
+% Machine code
+% Extracted from what you get if you run xxd -b a.out after compiling the following source code with gcc:
+%int main(void)
+%{
+%	int age = 10;
+%	char initial = 'C';
+%}
+\newsavebox{\mcode}
+\begin{lrbox}{\mcode}
+	\RecustomVerbatimEnvironment{Verbatim}{BVerbatim}{}%
+	\begin{minted}{text}
+01000010 01001001
+00000000 00101110
+	\end{minted}
+\end{lrbox}
+
+\newsavebox{\mcodea}
+\begin{lrbox}{\mcodea}
+	\RecustomVerbatimEnvironment{Verbatim}{BVerbatim}{}%
+	\begin{minted}{text}
+01000010 01001001
+	\end{minted}
+\end{lrbox}
+
+\newsavebox{\mcodeb}
+\begin{lrbox}{\mcodeb}
+	\RecustomVerbatimEnvironment{Verbatim}{BVerbatim}{}%
+	\begin{minted}{text}
+01000010 01001001
+	\end{minted}
+\end{lrbox}
+
+\begin{tikzpicture}[
+		block/.style={
+				rectangle,
+				thick,
+				minimum width=5em,
+				align=center,
+				rounded corners,
+				minimum height=2em
+			},
+		data/.style={
+				cylinder,
+				draw=black,
+				thick,
+				aspect=0.7,
+				minimum height=1.7cm,
+				minimum width=1.5cm,
+				shape border rotate=90,
+				cylinder uses custom fill,
+				cylinder body fill=red!30,
+				cylinder end fill=red!10
+			}
+	]
+	% Code blocks
+	%% High-level Language
+	\node [color=c] (c) {High-Level Language};
+	%%% Compiled
+	\node [below left = .3cm and .1cm of c, block, draw=c] (compiled) {Compiled};
+	\node [below right = -.5cm and .2cm of compiled, block, fill=c!20, draw=c] (compiledcode) {\usebox\ccode};
+	%%% Interpreted
+	\node [below  = 1cm of compiled, block, draw=c] (interpreted) {Interpreted};
+	\node [below right = -.5cm and .2cm of interpreted, block, fill=c!20, draw=c] (interpretedcode) {\usebox\pycode};
+	%%% Managed
+	\node [below = 2cm of interpreted, block, draw=c] (managed) {Managed};
+	\node [below right = -.5cm and .2cm of managed, block, fill=c!20, draw=c] (managedcode) {\usebox\cscode};
+	%% Assembly
+	\node [right = 5cm of c, color=a] (assemb) {Intermediate Language};
+	\node [below = 4.5cm of assemb, block, fill=a!20, draw=a] (ilcode) {\usebox\ilcode};
+	%% Machine-level Language
+	\node [right = 5cm of assemb, color=m] (machine) {Machine Language};
+	\node [below = .5cm of machine, block, fill=m!20, draw=m] (machinecode1) {\usebox\mcode};
+	\node [below = 2cm of machine, block, fill=m!20, draw=m] (machinecode2a) {\usebox\mcodea};
+	\node [below = 3cm of machine, block, fill=m!20, draw=m] (machinecode2b) {\usebox\mcodeb};
+	\node [below = 4.5cm of machine, block, fill=m!20, draw=m] (machinecode3a) {\usebox\mcodea};
+	\node [below = 5.5cm of machine, block, fill=m!20, draw=m] (machinecode3b) {\usebox\mcodeb};
+	%% Output
+	\node [right = 3cm of machine] (output) {Output (on screen)};
+	\node [below = .5cm of output, block, draw=black] (output1) {Hello, World!};
+	\node [below = 2cm of output, block, draw=black] (output2a) {Hello,};
+	\node [below right = 3cm and -1.7cm of output, block, draw=black] (output2b) {\phantom{Hello, }World!};
+	\node [below = 4.5cm of output, block, draw=black] (output3a) {Hello,};
+	\node [below right = 5.5cm and -1.7cm of output, block, draw=black] (output3b) {\phantom{Hello, }World!};
+	% Arrows
+	%% Compiler
+	\draw[thick, ->, color=compiler] (compiledcode)  to node[above]{Compiler} (machinecode1) ;
+	\draw[thick, ->, color=compiler] (managedcode)  to node[above]{Compiler} (ilcode) ;
+	%% Interpreter
+	\draw[thick, ->, color=assembler] ($(interpretedcode.east)+(0, .35)$)  to node[above]{Interpreter} (machinecode2a) ;
+	\draw[thick, ->, color=assembler] ($(interpretedcode.east)+(0, -.35)$)  to node[above]{Interpreter} (machinecode2b) ;
+	\draw[thick, ->, color=assembler] ($(ilcode.east)+(0, .55)$)  to node[above]{Interpreter} (machinecode3a) ;
+	\draw[thick, ->, color=assembler] ($(ilcode.east)+(0, -.5)$)  to node[above]{Interpreter} (machinecode3b) ;
+	% Execution
+	\draw[thick, ->] (machinecode1)  to node[above]{Execution} (output1);
+	\draw[thick, ->] (machinecode2a)  to node[above]{Execution} (output2a);
+	\draw[thick, ->] (machinecode2b)  to node[above]{Execution} (output2b);
+	\draw[thick, ->] (machinecode3a)  to node[above]{Execution} (output3a);
+	\draw[thick, ->] (machinecode3b)  to node[above]{Execution} (output3b);
+\end{tikzpicture}
+
+\end{document}

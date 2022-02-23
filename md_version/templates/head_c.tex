@@ -1,0 +1,273 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Everything in this file can be freely edited    % 
+% Beware that it makes break the compilation of   %
+% the main demo file, though.                     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%
+% Emoji support for latex
+%%%%%
+
+\usepackage[verbose]{newunicodechar}
+
+% List of symbols supported by Symbola at
+% https://www.fileformat.info/info/unicode/font/symbola/list.htm
+
+\newfontfamily\sym{Symbola}
+\DeclareTextFontCommand{\symb}{\sym}
+
+% The following unicode symbols are rendered in the 
+% symbola font, as they do not exist in the main
+% font of the template:
+\newunicodechar{🔒}{\symb 🔒} % U+1F512, "LOCK"
+\newunicodechar{✘}{\symb ✘} % U+2718,  "HEAVY BALLOT X"
+\newunicodechar{⚠}{\symb ⚠} % U+26A0,  "WARNING SIGN"
+\newunicodechar{❓}{\symb ❓} % U+2753, "BLACK QUESTION MARK ORNAMENT"
+\newunicodechar{🔜}{\symb 🔜} % U+1F51C, "SOON WITH RIGHTWARDS ARROW ABOVE"
+\newunicodechar{ℕ}{\symb ℕ} % U+2115,  "DOUBLE-STRUCK CAPITAL N"
+\newunicodechar{ℤ}{\symb ℤ} % U+2124,  "DOUBLE-STRUCK CAPITAL Z"
+\newunicodechar{✔}{\symb ✔} % U+2714,  "HEAVY CHECK MARK"
+% More symbols for new lines: https://stackoverflow.com/a/18931703
+\newunicodechar{↵}{\symb ↵} % U+21B5,  "DOWNWARDS ARROW WITH CORNER LEFTWARDS"
+\newunicodechar{↲}{\symb ↲} % U+21B2,  "DOWNWARDS ARROW WITH TIP LEFTWARDS"
+\newunicodechar{🛡}{\symb 🛡} % U+1F6E1, "SHIELD"
+\newunicodechar{ℝ}{\symb ℝ} % U+211D,  "Double-Struck Capital R"
+\newunicodechar{□}{\symb □} % U+25A1,  "White square"
+
+% Note that you can also define unicode characters
+% to be interpreted as latex commands, following
+% https://tex.stackexchange.com/a/522961 :
+
+\newunicodechar{↔}{\ensuremath{\leftrightarrow}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% Colors                           %
+% https://brand.augusta.edu/color/ %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{xcolor}
+% Those are the "official" AU color, but we are assuming black-and-white printing.
+\definecolor{augustablue}{HTML}{002f55} % Used for "external" links.
+\definecolor{augustagrey}{HTML}{A5ACAF} % Used for "internal" links.
+
+% Non-colored links, with underline, cf. https://tex.stackexchange.com/a/26085
+% This allow the links to be visually present only if the document is viewed on a screen.
+% Colored distribution inspired by https://tex.stackexchange.com/a/526148
+
+% This is to add color to the footnotes.
+\makeatletter
+\def\@footnotecolor{red}
+\define@key{Hyp}{footnotecolor}{%
+ \HyColor@HyperrefColor{#1}\@footnotecolor%
+}
+\patchcmd{\@footnotemark}{\hyper@linkstart{link}}{\hyper@linkstart{footnote}}{}{}
+\makeatother
+
+% Setup new colors
+\hypersetup{
+    linkcolor=augustagrey,
+    citecolor=augustagrey,
+    filecolor=augustablue,
+    urlcolor=augustablue,
+    menucolor=augustagrey,
+    runcolor=augustablue,
+    linkbordercolor=augustagrey,
+    citebordercolor=augustagrey,
+    filebordercolor=augustablue,
+    urlbordercolor=augustablue,
+    menubordercolor=augustagrey,
+    runbordercolor=augustablue,
+    footnotecolor=augustagrey,
+}
+
+\makeatletter
+\Hy@AtBeginDocument{%
+  \def\@pdfborder{0 0 0}         % Overrides border definition set with colorlinks=true
+  \def\@pdfborderstyle{/S/U/W 1} % Overrides border style set with colorlinks=true
+                                 % Hyperlink border style will be underline of width 1pt
+}
+\makeatother
+
+
+% For sideways figures and landscape pages.
+\usepackage{pdflscape}
+
+% For proper quotations.
+\usepackage{csquotes}
+
+% For math. environments
+\usepackage{mathtools}
+\usepackage{amsthm}
+
+% For the BibTex logo, courtesy of https://tex.stackexchange.com/a/198472
+\def\BibTeX{\textrm{B\kern-.05em\textsc{i\kern-.025em b}\kern-.08em T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\newtheorem{theorem}{Theorem}
+
+%%%%%%%%%%%%%%%%%%%%%
+% Code Presentation %
+%%%%%%%%%%%%%%%%%%%%%
+
+% We make listings be a bit more pretty,
+% cf. https://tex.stackexchange.com/a/272133
+
+\lstset{
+    % Space skipped before code block    
+    % Default style fors listings
+    basicstyle=\small\ttfamily\linespread{4},
+    % flexible columns
+    columns=[l]flexible,
+    commentstyle=\color[rgb]{0.127,0.427,0.514}\ttfamily\itshape,
+    escapechar=@,
+    % Enables ASCII chars 128 to 255
+    extendedchars=true,
+    % Frame only at the top and bottom
+    frame=tb,
+    % Coloring schemes
+    identifierstyle=\color{black},
+    keywordstyle=\color[HTML]{228B22}\bfseries,
+    ndkeywordstyle=\color[HTML]{228B22}\bfseries,
+    % Style for strings
+    stringstyle=\ttfamily,
+    % Style for comments
+    commentstyle={\ttfamily\color[HTML]{228B22}},
+    % Line numbers at the left, and tiny
+    numbers=left,
+    numberstyle=\tiny,
+    % Automatic breaking of long lines
+    breaklines=true,
+    % Add the "↲" symbol whenever a line is broken.
+    % The "↲" symbol is declared as a unicode symbol
+    % in the other header file (head_a.tex).
+    prebreak=\raisebox{0ex}[0ex][0ex]{↲},
+    % How strings are formatted, and style of quote sign.
+    stringstyle=\color[rgb]{0.639,0.082,0.082}\ttfamily,
+    upquote=true,
+    % Anything betweeen $ does not become LaTeX math mode
+    mathescape=false,
+    % Spaces are not displayed as a special character
+    showstringspaces=false,
+    % Size of tabulations
+    tabsize=3,
+    % Case sensitivity
+    sensitive=true,
+    % Position of captions is bottom
+    captionpos=b,
+    % We reduce the space between the caption and the code.
+    % This seems to come from a strange interaction between 
+    % the listings and caption packages,
+    % cf. https://tex.stackexchange.com/a/365260/
+    abovecaptionskip=-30pt,
+    % Floating option
+    float=H,
+    % We increment the space before and after the listings.
+    aboveskip=2em,
+    belowskip=2em, 
+}
+
+\lstset{literate=%
+   *{0}{{{\color{darkgray}0}}}1
+    {1}{{{\color{darkgray}1}}}1
+    {2}{{{\color{darkgray}2}}}1
+    {3}{{{\color{darkgray}3}}}1
+    {4}{{{\color{darkgray}4}}}1
+    {5}{{{\color{darkgray}5}}}1
+    {6}{{{\color{darkgray}6}}}1
+    {7}{{{\color{darkgray}7}}}1
+    {8}{{{\color{darkgray}8}}}1
+    {9}{{{\color{darkgray}9}}}1
+} 
+
+% We define a style for the Coq programming language
+% https://tex.stackexchange.com/a/620012/
+% lstlisting coq style (inspired from a file of Assia Mahboubi)
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{ltblue}{rgb}{0,0.4,0.4}
+\definecolor{dkviolet}{rgb}{0.3,0,0.5}
+
+\lstdefinelanguage{coq}{ 
+    % Comments may or not include Latex commands
+    texcl=false, 
+    % Vernacular commands
+    morekeywords=[1]{Section, Module, End, Require, Import, Export,
+        Variable, Variables, Parameter, Parameters, Axiom, Hypothesis,
+        Hypotheses, Notation, Local, Tactic, Reserved, Scope, Open, Close,
+        Bind, Delimit, Definition, Let, Ltac, Fixpoint, CoFixpoint, Add,
+        Morphism, Relation, Implicit, Arguments, Unset, Contextual,
+        Strict, Prenex, Implicits, Inductive, CoInductive, Record,
+        Structure, Canonical, Coercion, Context, Class, Global, Instance,
+        Program, Infix, Theorem, Lemma, Corollary, Proposition, Fact,
+        Remark, Example, Proof, Goal, Save, Qed, Defined, Hint, Resolve,
+        Rewrite, View, Search, Show, Print, Printing, All, Eval, Check,
+        Projections, inside, outside, Def},
+    % Gallina
+    morekeywords=[2]{forall, exists, exists2, fun, fix, cofix, struct,
+        match, with, end, as, in, return, let, if, is, then, else, for, of,
+        nosimpl, when},
+    % Sorts
+    morekeywords=[3]{Type, Prop, Set, true, false, option},
+    % Various tactics, some are std Coq subsumed by ssr, for the manual purpose
+    morekeywords=[4]{pose, set, move, case, elim, apply, clear, hnf,
+        intro, intros, generalize, rename, pattern, after, destruct,
+        induction, using, refine, inversion, injection, rewrite, congr,
+        unlock, compute, ring, field, fourier, replace, fold, unfold,
+        change, cutrewrite, simpl, have, suff, wlog, suffices, without,
+        loss, nat_norm, assert, cut, trivial, revert, bool_congr, nat_congr,
+        symmetry, transitivity, auto, split, left, right, autorewrite},
+    % Terminators
+    morekeywords=[5]{by, done, exact, reflexivity, tauto, romega, omega,
+        assumption, solve, contradiction, discriminate},
+    % Control
+    morekeywords=[6]{do, last, first, try, idtac, repeat},
+    % Comments delimiters, we do turn this off for the manual
+    morecomment=[s]{(*}{*)},
+    % String delimiters
+    morestring=[b]",
+    morestring=[d],
+    % Style for (listings') identifiers
+    identifierstyle={\ttfamily\color{black}},
+    % Style for declaration keywords
+    keywordstyle=[1]{\ttfamily\color{dkviolet}},
+    % Style for gallina keywords
+    keywordstyle=[2]{\ttfamily\color{dkgreen}},
+    % Style for sorts keywords
+    keywordstyle=[3]{\ttfamily\color{ltblue}},
+    % Style for tactics keywords
+    keywordstyle=[4]{\ttfamily\color{dkblue}},
+    % Style for terminators keywords
+    keywordstyle=[5]{\ttfamily\color{dkred}},
+    %Style for iterators
+    % keywordstyle=[6]{\ttfamily\color{dkpink}},
+    literate=
+    {\\forall}{{\color{dkgreen}{$\forall\;$}}}1
+    {\\exists}{{$\exists\;$}}1
+    {<-}{{$\leftarrow\;$}}1
+    {=>}{{$\Rightarrow\;$}}1
+    {==}{{\code{==}\;}}1
+    {==>}{{\code{==>}\;}}1
+    %    {:>}{{\code{:>}\;}}1
+    {->}{{$\rightarrow\;$}}1
+    {<->}{{$\leftrightarrow\;$}}1
+    {<==}{{$\leq\;$}}1
+    {\#}{{$^\star$}}1 
+    {\\o}{{$\circ\;$}}1 
+    {\@}{{$\cdot$}}1 
+    {\/\\}{{$\wedge\;$}}1
+    {\\\/}{{$\vee\;$}}1
+    {++}{{\code{++}}}1
+    {~}{{\ }}1
+    {\@\@}{{$@$}}1
+    {\\mapsto}{{$\mapsto\;$}}1
+    {\\hline}{{\rule{\linewidth}{0.5pt}}}1
+    %
+}[keywords,comments,strings]
+
+%%%%%%%%%%%%%%%
+% Derivations %
+%%%%%%%%%%%%%%%
+
+% We recommend using the more modern ebproof over
+% the more "traditional" bussproofs,
+\usepackage{ebproof}
