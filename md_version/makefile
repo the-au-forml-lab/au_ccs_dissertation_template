@@ -23,7 +23,7 @@ PANDOC_OPTIONS = --listings \
 	
 
 main.pdf : main.md
-	pandoc $< $(PANDOC_OPTIONS)  -o $@
+	pandoc $< $(PANDOC_OPTIONS) -o $@
 
 # Installing entr ( https://github.com/eradman/entr )
 # will allow you to automatically compile your document

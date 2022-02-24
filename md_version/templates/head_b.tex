@@ -1,7 +1,7 @@
-%%%%%%%%%%%%%%%%%%%%%
-% ⚠ Do not edit ⚠   %
-% this file at all! %
-%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+% ⚠ Do not edit ⚠      %
+% what is below at all %
+%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%
@@ -9,7 +9,6 @@
 %%%%%%%%%%%%
 
 \usepackage{scrhack}                               % Hack from the koma-script for various packages to play more nicely with this class.
-%\usepackage[doublespacing]{setspace}               % Fine-tune the spacing between lines, and double-space everything.
 \usepackage{xstring}                               % Used to perform substitution, using \StrSubstitut.
 \usepackage[figure, table, lstlisting]{totalcount} % To conditionally insert list of figures, tables, and listings.
 % https://tex.stackexchange.com/a/297657
@@ -270,35 +269,3 @@
 \SetWatermarkScale{2.27}
 \SetWatermarkColor{augustagrey!20}
 \fi
-
-%%%%%%%%%%%%%%%%%%%%%%
-% Debugging packages %
-%%%%%%%%%%%%%%%%%%%%%%
-
-% \usepackage{showframe} % show the page layout
-\usepackage{layouts}   
-% Allow to use 
-% \printinunitsof{in}{\pagevalues}
-% to "see" the margins.
-
-% The following commands allows to "see" the font sizes.
-% cf. https://tex.stackexchange.com/a/24600
-% https://texfaq.org/FAQ-csname
-\makeatletter
-\newcommand\thefontsize[1]{\csname #1\endcsname #1 is equivalent to \f@size pt\par}
-\makeatother
-
-\newcommand{\getfontsize}{
-    \thefontsize{tiny}
-    \thefontsize{scriptsize}
-    \thefontsize{footnotesize}
-    \thefontsize{small}
-    \thefontsize{normalsize}
-    \thefontsize{large}
-    \thefontsize{Large}
-    \thefontsize{LARGE}
-    \thefontsize{huge}
-    \thefontsize{Huge}
-    \normalsize
-}
-
