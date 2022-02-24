@@ -37,11 +37,10 @@ Start by looking for
 and replace the values of the commands from `\yourtitle{…}` to `\yourdate{…}`, uncommenting `\togglefalse{ms}` and commenting `\toggletrue{ms}` if you are a PhD student.
 
 
-Requirements
-~ 
+#### Requirements
 
-    - [LaTeX](https://www.latex-project.org/get/),
-    - [latexmk](https://mg.readthedocs.io/latexmk.html) (it is possible that it is already part of your LaTeX installation).
+- [LaTeX](https://www.latex-project.org/get/),
+- [latexmk](https://mg.readthedocs.io/latexmk.html) (it is possible that it is already part of your LaTeX installation).
 
 ### Details on the markdown version
 
@@ -53,14 +52,13 @@ in the md_version folder.
 
 Start by editing the file info/info.tex with your information.
 
-Requirements
-~ 
+#### Requirements
 
-    - The ability to execute [makefile](https://en.wikipedia.org/wiki/Makefile)^[You can also simply open the [makefile](md_version/makefile) file to "extract" the pandoc options needed to compile properly this document.] (e.g., a UNIX system, a system with [Cygwin](https://en.wikipedia.org/wiki/Cygwin), or [some other trick](https://stackoverflow.com/q/2532234/)),
-    - the latest version of [pandoc](https://pandoc.org/installing.html),
-    - [LaTeX](https://www.latex-project.org/get/) (refer to the instructions on the [pandoc installation page](https://pandoc.org/installing.html] or at  <https://tex.stackexchange.com/q/1092>^[It is probaby better to install a minimal installation, and then to fetch the missing packages one by one, using e.g. `/usr/local/texlive/2021/bin/x86_64-linux/tlmgr install environ` for the `environ` package.]),
-    - [latexmk](https://mg.readthedocs.io/latexmk.html) ([version 4.74. or higher](https://github.com/aubertc/au_ccs_dissertation_template/issues/1), it is possible that it is already part of your LaTeX installation),
-    - [entr](https://github.com/eradman/entr) if you want  to use the command `make watch` that automatically re-compile your source when it is saved.
+- The ability to execute [makefile](https://en.wikipedia.org/wiki/Makefile) (e.g., a UNIX system, a system with [Cygwin](https://en.wikipedia.org/wiki/Cygwin), or [some other trick](https://stackoverflow.com/q/2532234/)), or you can also simply open the [makefile](md_version/makefile) file to "extract" the pandoc options needed to compile properly this document,
+- the latest version of [pandoc](https://pandoc.org/installing.html),
+- [LaTeX](https://www.latex-project.org/get/) (refer to the instructions on the [pandoc installation page](https://pandoc.org/installing.html) or at  <https://tex.stackexchange.com/q/1092>), it is probaby better to install a minimal installation, and then to fetch the missing packages one by one, using e.g. `/usr/local/texlive/2021/bin/x86_64-linux/tlmgr install environ` for the `environ` package,
+- [latexmk](https://mg.readthedocs.io/latexmk.html) ([version 4.74. or higher](https://github.com/aubertc/au_ccs_dissertation_template/issues/1), it is possible that it is already part of your LaTeX installation),
+- [entr](https://github.com/eradman/entr) if you want  to use the command `make watch` that automatically re-compile your source when it is saved.
 
 
 ## Additional Information
