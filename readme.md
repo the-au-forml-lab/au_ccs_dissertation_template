@@ -14,8 +14,7 @@ Note that the tex version is actually obtained from the markdown version, thanks
 This conversion takes place when the markdown version is used to produce the final `pdf` "under the hood", which allows the markdown version to use _both_ the LaTeX and the markdown syntaxes.
 Both versions are commented and links to relevant documentations / questions are included.
 
-Important notice
-~ 
+Important notice:
     Those documents have been approved by the graduate school and the University Libraries regarding the font, spacing, margins, and other important conventions. Please, do not edit portions of the documents labeled 
     
     > ⚠ Do not edit ⚠ 
@@ -56,20 +55,4 @@ Please, refer to the [Thesis/PhD Dissertation Preparation Booklet](https://www.a
 
 - This template was created taking inspiration from the [Biostat dissertation template](https://guides.augusta.edu/ld.php?content_id=38486754).
 - This template uses and redistributes the [TeX Gyre Termes](http://www.gust.org.pl/projects/e-foundry/tex-gyre/termes) font, placed under the [GUST Font License](https://tug.org/fonts/licenses/GUST-FONT-LICENSE.txt), which is an extension of the [The LaTeX Project Public License](https://www.latex-project.org/lppl.txt).
-- 
-
-
-https://guides.augusta.edu/graduateschool/
-
-
-
-
-# Latex version:
-
-latexmk -pdf -xelatex main.tex
-
-needs:
-- fonts
-- references
-- pictures
-- code
+- Unless otherwise noted, this template is under [Creative Commons Attribution 4.0 International](LICENSE.md).
