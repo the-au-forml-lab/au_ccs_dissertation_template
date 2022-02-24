@@ -162,6 +162,7 @@ Markdown only
         Carl Friedrich Gauss told me so. \qed
 
 To insert numbered theorems, definitions, and the like, and be able to reference them or add automatically the "qed" (□) symbol, you need to use \LaTeX's `theorem` environment, `label` commands, etc.
+Note that, by default, proofs are unnumbered environments, but that there are [ways to reference them](https://tex.stackexchange.com/q/223352) if you want to.
 
 \begin{theorem}[Pythagoras theorem]
 \label{thm:pythagoras}
@@ -171,6 +172,7 @@ To insert numbered theorems, definitions, and the like, and be able to reference
 \begin{proof}
     Proving \autoref{thm:pythagoras} is not that easy.
 \end{proof}
+
 
 Markdown only
 ~  If you would rather keep the "pure" markdown syntax but improve pandoc using a filter, you can look at [the pandoc filter "statement"](https://github.com/jdutant/statement) and its [discussion on related filters](https://github.com/jdutant/statement#related-filters), but it may be more difficult to install and use properly.

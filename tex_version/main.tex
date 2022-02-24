@@ -931,7 +931,10 @@ Carl Friedrich Gauss told me so. \qed
 To insert numbered theorems, definitions, and the like, and be able to
 reference them or add automatically the ``qed'' (□) symbol, you need to
 use \LaTeX's \passthrough{\lstinline!theorem!} environment,
-\passthrough{\lstinline!label!} commands, etc.
+\passthrough{\lstinline!label!} commands, etc. Note that, by default,
+proofs are unnumbered environments, but that there are
+\href{https://tex.stackexchange.com/q/223352}{ways to reference them} if
+you want to.
 
 \begin{theorem}[Pythagoras theorem]
 \label{thm:pythagoras}
