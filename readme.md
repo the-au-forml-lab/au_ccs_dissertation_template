@@ -17,7 +17,7 @@ Both versions are commented and links to relevant documentations / questions are
 Important notice:
     Those documents have been approved by the graduate school and the University Libraries regarding the font, spacing, margins, and other important conventions. Please, do not edit portions of the documents labeled 
     
-    > ⚠ Do not edit ⚠ 
+    ⚠ Do not edit ⚠ 
 
 ### Details on the `tex` version
 
