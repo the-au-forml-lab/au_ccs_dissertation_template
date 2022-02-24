@@ -39,6 +39,7 @@ and replace the values of the commands from `\yourtitle{…}` to `\yourdate{…}
 
 Requirements
 ~ 
+
     - [LaTeX](https://www.latex-project.org/get/),
     - [latexmk](https://mg.readthedocs.io/latexmk.html) (it is possible that it is already part of your LaTeX installation).
 
@@ -54,6 +55,7 @@ Start by editing the file info/info.tex with your information.
 
 Requirements
 ~ 
+
     - The ability to execute [makefile](https://en.wikipedia.org/wiki/Makefile)^[You can also simply open the [makefile](md_version/makefile) file to "extract" the pandoc options needed to compile properly this document.] (e.g., a UNIX system, a system with [Cygwin](https://en.wikipedia.org/wiki/Cygwin), or [some other trick](https://stackoverflow.com/q/2532234/)),
     - the latest version of [pandoc](https://pandoc.org/installing.html),
     - [LaTeX](https://www.latex-project.org/get/) (refer to the instructions on the [pandoc installation page](https://pandoc.org/installing.html] or at  <https://tex.stackexchange.com/q/1092>^[It is probaby better to install a minimal installation, and then to fetch the missing packages one by one, using e.g. `/usr/local/texlive/2021/bin/x86_64-linux/tlmgr install environ` for the `environ` package.]),
