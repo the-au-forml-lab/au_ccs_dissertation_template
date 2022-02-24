@@ -7,10 +7,10 @@ Students more comfortable with the `docx` format or not willing to learn to use 
 
 This template is offered in two versions:
 
-- The [tex version](tex_version) is a standard `tex` document that can be compiled using [latexmk](https://mg.readthedocs.io/latexmk.html) or any standard LaTeX distribution,
+- The [`tex` version](tex_version) is a standard `tex` document that can be compiled using [latexmk](https://mg.readthedocs.io/latexmk.html) or any standard LaTeX distribution,
 - The [markdown version](md_version) is a [markdown](https://commonmark.org/) document that can be compiled using [pandoc](https://pandoc.org/).
 
-Note that the tex version is actually obtained from the markdown version, thanks to pandoc's ability to convert markdown documents into tex documents.
+Note that the `tex` version is actually obtained from the markdown version, thanks to pandoc's ability to convert markdown documents into `tex` documents.
 This conversion takes place when the markdown version is used to produce the final `pdf` "under the hood", which allows the markdown version to use _both_ the LaTeX and the markdown syntaxes.
 Both versions are commented and links to relevant documentations / questions are included.
 
@@ -19,13 +19,13 @@ Important notice:
     
     > ⚠ Do not edit ⚠ 
 
-### Details on the tex version
+### Details on the `tex` version
 
-The tex version of this template can be compiled using [latexmk](https://mg.readthedocs.io/latexmk.html), by running 
+The `tex` version of this template can be compiled using [latexmk](https://mg.readthedocs.io/latexmk.html), by running 
 
     latexmk -pdf -xelatex main.tex
 
-in the tex_version folder. The "main.tex" document is "standalone" in the sense that it is not divided into smaller .tex files, but students should feel free to split it by using the [`\input{…}` and `\include{…}` commands](https://tex.stackexchange.com/q/246/34551).
+in the tex_version folder. The "main.tex" document is "standalone" in the sense that it is not divided into smaller `tex` files, but students should feel free to split it by using the [`\input{…}` and `\include{…}` commands](https://tex.stackexchange.com/q/246/34551).
 
 
 Start by looking for
