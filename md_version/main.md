@@ -61,15 +61,18 @@ but you should feel free to erase all of it.
 
 # Introduction
 
-This document is guide on how to use it ("how meta!"), and its structure does not reflect the structure of a Thesis: you will need to erase (almost) all of its content and fill it with your own, organized in a coherent manner respectful of your reader's expectations, of your fields guidelines, and in agreement with your advisor.
+This document is a guide on how to use it ("how meta!"), and its structure does not reflect the structure of a Thesis: you will need to erase (almost) all of its body and fill it with your own, organized in a coherent manner respectful of your reader's expectations, of your fields guidelines, and in agreement with your advisor.
 
 It is very important that you comply with all of the graduate school's policies [@gradschool_policies].
 This template was carefully crafted with highest standards in mind, and respects all of the graduate schools requirements.
-You can find additional information on the ["The Graduate School Reference Center: ETD Templates & Preparation Booklet"](https://guides.augusta.edu/graduateschool/template).
+You can find additional information on the ["The Graduate School Reference Center: ETD Templates & Preparation Booklet"](https://guides.augusta.edu/graduateschool/template) or, more generally, on [this template's repository](https://github.com/aubertc/au_ccs_dissertation_template).
 
 Normally, what you can and cannot edit is clearly labeled in the source code, either at the beginning of the file, or with 
 
 > ⚠ Do not edit ⚠
+
+Markdown only
+~ The comments applicable only to the markdown version of this document are indicated in such environments.
 
 ## Title Levels 
 
@@ -84,8 +87,10 @@ As indicated in the koma-script manual, the class `scrbook` that is used for thi
 \subparagraph{Test}
 ```
 
-Note that pandoc's `#` corresponds to Chapter, and that increasing the number of `#` increases the level of heading.
-However, note that only Chapters, Sections and Subsections will appear in the table of contents, by design.
+Only Chapters, Sections and Subsections will appear in the table of contents, by design.
+
+Markdown only
+~ Note that pandoc's `#` corresponds to Chapter, and that increasing the number of `#` increases the level of heading.
 
 ### Subsection
 
@@ -105,7 +110,7 @@ This is a sub-paragraph.
 
 ## Debugging
 
-If this template does not "work" as expected, feel free to open an issue or reach out to the maintainer(s), after having looked at `aux/input.log` as (probably) indicated by latexmk.
+If this template does not "work" as expected, feel free to [open an issue](https://github.com/aubertc/au_ccs_dissertation_template/issues) or reach out to [the maintainer](https://spots.augusta.edu/caubert/#contact), after having looked at `aux/input.log` as (probably) indicated by latexmk.
 
 
 # References and Bibliography
@@ -117,35 +122,46 @@ In computer science, a good source of bibliographical references is the [dblp co
 Make sure to include the [digital object identifier](http://dx.doi.org/) (DOI) whenever possible, and note that this identifier can [be used to obtain the corresponding .bib entry](https://www.doi2bib.org/).
 Finally, you can "tidy" your .bib file using [bibtex-tidy](https://flamingtempura.github.io/bibtex-tidy/).
 
-The list of references is automatically inserted in [the list of references](#chap:references), p.\ \pageref{chap:references}, you can use various syntaxes to integrate references: \LaTeX's `\cite` command, [pandoc's](https://pandoc.org/MANUAL.html#citation-syntax) `[@key]`, as well as [more complex commands](https://github.com/jgm/pandoc/issues/2335), such as `\citeauthor` or pandoc's prefix, locator, and suffix, such as in `[see @key1, pp. 33-35 and *passim*; @key2, chap. 1]`.
+The list of references is automatically inserted in [the list of references](#chap:references), p.\ \pageref{chap:references}. 
+Use \LaTeX's `\cite` command to insert references.
 
-Note, also, that you can insert [hyperlinks](https://pandoc.org/MANUAL.html#links-1) in different ways, including hyperlinks to this document^[You may note that the footnote number is itself a link.] using e.g.\ the [link automatically added to all chapters](#introduction), following the convention described [in pandoc's manual](https://pandoc.org/MANUAL.html#heading-identifiers).
+Links are only underlined _on screen_ (and not in print), and with colors that should be [colourblind safe](https://tex.stackexchange.com/a/526148).
 
-Finally, note that the links are only underlined _on screen_ (and not in print), and with colors that should be [colourblind safe](https://tex.stackexchange.com/a/526148).
+
+Markdown only
+~ 
+    You can use various syntaxes to integrate references: on top of \LaTeX's `\cite` command, [pandoc's](https://pandoc.org/MANUAL.html#citation-syntax) `[@key]`, as well as [more complex commands](https://github.com/jgm/pandoc/issues/2335), such as `\citeauthor` or pandoc's prefix, locator, and suffix, such as in `[see @key1, pp. 33-35 and *passim*; @key2, chap. 1]`.
+    
+    You can insert [hyperlinks](https://pandoc.org/MANUAL.html#links-1) in different ways, including hyperlinks to this document^[You may note that the footnote number is itself a link.] using e.g.\ the [link automatically added to all chapters](#introduction), following the convention described [in pandoc's manual](https://pandoc.org/MANUAL.html#heading-identifiers).
 
 
 # Writing Mathematics
 
 \LaTeX can be used to render [complex mathematics expressions](https://en.m.wikibooks.org/wiki/LaTeX/Mathematics) in a relatively simple manner.
-Note that thanks to XeLaTeX and pandoc, you can insert mathematical symbols directly [in unicode](https://en.wikipedia.org/wiki/Mathematical_operators_and_symbols_in_Unicode), as follows: 
-$∀ y ∈ ℕ, ∃ x ∈ ℕ, y = x²$, but of course you can always fall back to usual \LaTeX{} notation, using e.g. `\forall` to produce $\forall$.
+Note that thanks to XeLaTeX, you can insert mathematical symbols directly [in unicode](https://en.wikipedia.org/wiki/Mathematical_operators_and_symbols_in_Unicode), as follows: $∀ y ∈ ℕ, ∃ x ∈ ℕ, y = x²$, but of course you can always fall back to usual \LaTeX{} notation, using e.g. `\forall` to produce $\forall$.
 
-You can add additional unicode symbols that may not be supported by this template or its font using the model in `head_a.tex`, additionaly forcing e.g. the symbol "↔" to be rendered in math mode using `\ensuremath`.
+You can add additional unicode symbols that may not be supported by this template or its font using the model 
+
+    \newunicodechar{<unicode symbol>}{\ensuremath{<latex command>}}
+
+(in `head_a.tex` in the markdown version), in this case additionally forcing the symbol `<unicode symbol>` to be rendered in math mode using `\ensuremath`.
 
 
 ## Theorem, Proof, and Others Environments
 
-You can state e.g.\ theorems and proofs using pandoc's built-in ["_Definition list_"](https://pandoc.org/MANUAL.html#definition-lists):
-
-Theorem
+Markdown only
 ~ 
-    Every $n ∈ ℕ$, $n >1$ has a unique prime factorization.
+    You can state e.g.\ theorems and proofs using pandoc's built-in ["_Definition list_"](https://pandoc.org/MANUAL.html#definition-lists), that are rendered as `description` environments in \LaTeX.
 
-Proof
-~ 
-    Carl Friedrich Gauss told me so. \qed
+    Theorem
+    ~ 
+        Every $n ∈ ℕ$, $n >1$ has a unique prime factorization.
 
-But if you want more advances features (numbering, references, automatic "qed" (□) symbol, more control over the style, and the like), then you need to use \LaTeX:
+    Proof
+    ~ 
+        Carl Friedrich Gauss told me so. \qed
+
+To insert numbered theorems, definitions, and the like, and be able to reference them or add automatically the "qed" (□) symbol, you need to use \LaTeX's `theorem` environment, `label` commands, etc.
 
 \begin{theorem}[Pythagoras theorem]
 \label{thm:pythagoras}
@@ -156,7 +172,8 @@ But if you want more advances features (numbering, references, automatic "qed" (
     Proving \autoref{thm:pythagoras} is not that easy.
 \end{proof}
 
-If you would rather keep the "pure" markdown syntax but improve pandoc using a filter, you can look at [the pandoc filter "statement"](https://github.com/jdutant/statement) and its [discussion on related filters](https://github.com/jdutant/statement#related-filters), but it may be more difficult to install and use properly.
+Markdown only
+~  If you would rather keep the "pure" markdown syntax but improve pandoc using a filter, you can look at [the pandoc filter "statement"](https://github.com/jdutant/statement) and its [discussion on related filters](https://github.com/jdutant/statement#related-filters), but it may be more difficult to install and use properly.
 
 ## Formal Proofs
 
@@ -177,14 +194,17 @@ You can easily represent formal proofs using \LaTeX's ebproof or bussproof packa
 
 ## Figures
 
-You can easily insert [images and figures](https://pandoc.org/MANUAL.html#images) using Pandoc, as in \autoref{fig:d_un_autre_age}, a painting by [Jérôme Minard](http://jeromeminard.com/travaux/) under [copyleft](https://forceg.jimdofree.com/licence-art-libre/).
+Markdown only
+~  You can easily insert [images and figures](https://pandoc.org/MANUAL.html#images) using Pandoc, as in \autoref{fig:d_un_autre_age}, a painting by [Jérôme Minard](http://jeromeminard.com/travaux/) under [copyleft](https://forceg.jimdofree.com/licence-art-libre/).
 
 ![_D'un autre âge_\label{fig:d_un_autre_age}](pictures/D_un_autre_age.jpg){width=80%}
 
 
 ## Tables
 
-You can write tables using [pandoc's syntax*es*](https://pandoc.org/MANUAL.html#tables), as in Tables \ref{tbl:demo1}, \ref{tbl:demo2} and \ref{tbl:demo3} (all borrowed from <https://www.flutterbys.com.au/stats/tut/tut17.3.html>):
+Markdown only
+~  You can write tables using [pandoc's syntax*es*](https://pandoc.org/MANUAL.html#tables), as in Tables \ref{tbl:demo1}, \ref{tbl:demo2} and \ref{tbl:demo3} (all borrowed from <https://www.flutterbys.com.au/stats/tut/tut17.3.html>).
+
 
   --------------------------------
   Column A    Column B      Column 
@@ -221,8 +241,10 @@ You can write tables using [pandoc's syntax*es*](https://pandoc.org/MANUAL.html#
 ## Code Listings
 
 Code is displayed using the listings package.
-Check the "Table 1: Predefined  languages" of the listings package to see the list of supported languages by default.
-Your can display code using [various possible syntaxes](https://pandoc.org/MANUAL.html#verbatim-code-blocks).
+Check the "Table 1: Predefined  languages" of the listings package documentation to see the list of supported languages by default.
+
+Markdown only
+~  Your can display code using [various possible syntaxes](https://pandoc.org/MANUAL.html#verbatim-code-blocks).
 
 As a fenced block:
 
@@ -256,9 +278,11 @@ for num in {000..2}; do echo "$num"; done
 ## Landscape Pages
 
 You can obtain landscape pages using the landscape package in \LaTeX.
-This feature is not accessible in pure markdown.
 
-Note that the drawing presented in \autoref{fig:language} was obtained using \LaTeX's package tiKz.
+Markdown only
+~  This feature is not accessible in pure markdown: if you want to have landscape pages, you need to use \LaTeX commands in your document.
+
+Note that the drawing presented in \autoref{fig:language} was obtained using \LaTeX's package tiKz, and that the source code is shared in the pictures folder.
 
 \begin{landscape}
     \vspace*{\fill} 
@@ -277,14 +301,17 @@ Note that the drawing presented in \autoref{fig:language} was obtained using \La
 
 The margin have been set to fit the graduate school's requirements to:
 
+---
+
 \printinunitsof{in}{\pagevalues}
+
+---
 
 Please, do not change those values.
 
 ## Fonts
 
-The font used is the font ["TeX Gyre Termes Font Family"](http://www.gust.org.pl/projects/e-foundry/tex-gyre/termes
-), which is an extension of the standard Times New Roman that is free for commercial use, and can be [freely distributed](https://www.gust.org.pl/fonts/licenses/GUST-FONT-LICENSE.txt).
+The font used is the font ["TeX Gyre Termes Font Family"](http://www.gust.org.pl/projects/e-foundry/tex-gyre/termes), which is an extension of the standard Times New Roman that is free for commercial use, and can be [freely distributed](https://www.gust.org.pl/fonts/licenses/GUST-FONT-LICENSE.txt).
 It is set to 12pt in all of the document, and adjusted when needed to the appropriate size (particularly in the page, where most attributes need to be set at 16pts).
 
 The "usual" correspondance between points and latex commands is as follows:
@@ -301,7 +328,6 @@ the three lines below.
 <!--
 You can remove what follows if you do not need appendices.
 -->
-
 
 \appendix
 

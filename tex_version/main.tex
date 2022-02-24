@@ -4,10 +4,22 @@
 %
 \documentclass[
   12pt,
+  english,
   letterpaper,
   oneside,
   BCOR = 0 pt,
   singlespacing = true]{scrbook}
+\title{\yourtitle}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{\yoursubtitle}
+\author{\yourname}
+\date{\yourdate}
+
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
 \usepackage{iftex}
@@ -78,15 +90,6 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
-\ifLuaTeX
-\usepackage[bidi=basic]{babel}
-\else
-\usepackage[bidi=default]{babel}
-\fi
-\babelprovide[main,import]{english}
-% get rid of language-specific shorthands (see #6817):
-\let\LanguageShortHands\languageshorthands
-\def\languageshorthands#1{}
 % The following package and toggle
 % are needed to implement the switch
 % between the PhD and MS templates.
@@ -129,10 +132,10 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 % indicate that your manuscript is a draft
 \newcommand{\yourmention}{Draft} 
 
-%%%%%%%%%%%%%%%%%%%%%
-% ⚠ Do not edit ⚠   %
-% this file at all! %
-%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+% ⚠ Do not edit ⚠      %
+% what is below at all %
+%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%
@@ -140,7 +143,6 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 %%%%%%%%%%%%
 
 \usepackage{scrhack}                               % Hack from the koma-script for various packages to play more nicely with this class.
-%\usepackage[doublespacing]{setspace}               % Fine-tune the spacing between lines, and double-space everything.
 \usepackage{xstring}                               % Used to perform substitution, using \StrSubstitut.
 \usepackage[figure, table, lstlisting]{totalcount} % To conditionally insert list of figures, tables, and listings.
 % https://tex.stackexchange.com/a/297657
@@ -401,6 +403,12 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 \SetWatermarkScale{2.27}
 \SetWatermarkColor{augustagrey!20}
 \fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Everything below can be freely edited.          % 
+% Beware that it may break the compilation of     %
+% the main demo file, though.                     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 %%%%%%%%%%%%%%%%%%%%%%
 % Debugging packages %
@@ -432,13 +440,6 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
     \thefontsize{Huge}
     \normalsize
 }
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Everything in this file can be freely edited    % 
-% Beware that it makes break the compilation of   %
-% the main demo file, though.                     %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 %%%%%
 % Emoji support for latex
@@ -706,22 +707,21 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 % We recommend using the more modern ebproof over
 % the more "traditional" bussproofs,
 \usepackage{ebproof}
+\ifXeTeX
+  % Load polyglossia as late as possible: uses bidi with RTL langages (e.g. Hebrew, Arabic)
+  \usepackage{polyglossia}
+  \setmainlanguage[]{english}
+\else
+  \usepackage[main=english]{babel}
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\fi
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
 \usepackage[backend=biber]{biblatex}
 \addbibresource{./references/references.bib}
-
-\title{\yourtitle}
-\usepackage{etoolbox}
-\makeatletter
-\providecommand{\subtitle}[1]{% add subtitle to \maketitle
-  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
-}
-\makeatother
-\subtitle{\yoursubtitle}
-\author{\yourname}
-\date{\yourdate}
 
 \begin{document}
 \frontmatter
@@ -747,18 +747,21 @@ Explanatory matter and opinion must be omitted.
 \hypertarget{introduction}{%
 \chapter{Introduction}\label{introduction}}
 
-This document is guide on how to use it (``how meta!''), and its
+This document is a guide on how to use it (``how meta!''), and its
 structure does not reflect the structure of a Thesis: you will need to
-erase (almost) all of its content and fill it with your own, organized
-in a coherent manner respectful of your reader's expectations, of your
-fields guidelines, and in agreement with your advisor.
+erase (almost) all of its body and fill it with your own, organized in a
+coherent manner respectful of your reader's expectations, of your fields
+guidelines, and in agreement with your advisor.
 
 It is very important that you comply with all of the graduate school's
 policies \autocite{gradschool_policies}. This template was carefully
 crafted with highest standards in mind, and respects all of the graduate
 schools requirements. You can find additional information on the
 \href{https://guides.augusta.edu/graduateschool/template}{``The Graduate
-School Reference Center: ETD Templates \& Preparation Booklet''}.
+School Reference Center: ETD Templates \& Preparation Booklet''} or,
+more generally, on
+\href{https://github.com/aubertc/au_ccs_dissertation_template}{this
+template's repository}.
 
 Normally, what you can and cannot edit is clearly labeled in the source
 code, either at the beginning of the file, or with
@@ -766,6 +769,13 @@ code, either at the beginning of the file, or with
 \begin{quote}
 ⚠ Do not edit ⚠
 \end{quote}
+
+\begin{description}
+\tightlist
+\item[Markdown only]
+The comments applicable only to the markdown version of this document
+are indicated in such environments.
+\end{description}
 
 \hypertarget{title-levels}{%
 \section{Title Levels}\label{title-levels}}
@@ -783,10 +793,16 @@ access to 6 levels of titles:
 \subparagraph{Test}
 \end{lstlisting}
 
+Only Chapters, Sections and Subsections will appear in the table of
+contents, by design.
+
+\begin{description}
+\tightlist
+\item[Markdown only]
 Note that pandoc's \passthrough{\lstinline!\#!} corresponds to Chapter,
 and that increasing the number of \passthrough{\lstinline!\#!} increases
-the level of heading. However, note that only Chapters, Sections and
-Subsections will appear in the table of contents, by design.
+the level of heading.
+\end{description}
 
 \hypertarget{subsection}{%
 \subsection{Subsection}\label{subsection}}
@@ -811,10 +827,12 @@ This is a sub-paragraph.
 \hypertarget{debugging}{%
 \section{Debugging}\label{debugging}}
 
-If this template does not ``work'' as expected, feel free to open an
-issue or reach out to the maintainer(s), after having looked at
-\passthrough{\lstinline!aux/input.log!} as (probably) indicated by
-latexmk.
+If this template does not ``work'' as expected, feel free to
+\href{https://github.com/aubertc/au_ccs_dissertation_template/issues}{open
+an issue} or reach out to
+\href{https://spots.augusta.edu/caubert/\#contact}{the maintainer},
+after having looked at \passthrough{\lstinline!aux/input.log!} as
+(probably) indicated by latexmk.
 
 \hypertarget{references-and-bibliography}{%
 \chapter{References and
@@ -840,8 +858,17 @@ entry}. Finally, you can ``tidy'' your .bib file using
 
 The list of references is automatically inserted in
 \protect\hyperlink{chap:references}{the list of references},
-p.~\pageref{chap:references}, you can use various syntaxes to integrate
-references: \LaTeX's \passthrough{\lstinline!\\cite!} command,
+p.~\pageref{chap:references}. Use \LaTeX's
+\passthrough{\lstinline!\\cite!} command to insert references.
+
+Links are only underlined \emph{on screen} (and not in print), and with
+colors that should be
+\href{https://tex.stackexchange.com/a/526148}{colourblind safe}.
+
+\begin{description}
+\item[Markdown only]
+You can use various syntaxes to integrate references: on top of \LaTeX's
+\passthrough{\lstinline!\\cite!} command,
 \href{https://pandoc.org/MANUAL.html\#citation-syntax}{pandoc's}
 \passthrough{\lstinline![@key]!}, as well as
 \href{https://github.com/jgm/pandoc/issues/2335}{more complex commands},
@@ -849,7 +876,7 @@ such as \passthrough{\lstinline!\\citeauthor!} or pandoc's prefix,
 locator, and suffix, such as in
 \passthrough{\lstinline![see @key1, pp. 33-35 and *passim*; @key2, chap. 1]!}.
 
-Note, also, that you can insert
+You can insert
 \href{https://pandoc.org/MANUAL.html\#links-1}{hyperlinks} in different
 ways, including hyperlinks to this document\footnote{You may note that
   the footnote number is itself a link.} using e.g.~the
@@ -857,10 +884,7 @@ ways, including hyperlinks to this document\footnote{You may note that
 chapters}, following the convention described
 \href{https://pandoc.org/MANUAL.html\#heading-identifiers}{in pandoc's
 manual}.
-
-Finally, note that the links are only underlined \emph{on screen} (and
-not in print), and with colors that should be
-\href{https://tex.stackexchange.com/a/526148}{colourblind safe}.
+\end{description}
 
 \hypertarget{writing-mathematics}{%
 \chapter{Writing Mathematics}\label{writing-mathematics}}
@@ -868,25 +892,34 @@ not in print), and with colors that should be
 \LaTeX can be used to render
 \href{https://en.m.wikibooks.org/wiki/LaTeX/Mathematics}{complex
 mathematics expressions} in a relatively simple manner. Note that thanks
-to XeLaTeX and pandoc, you can insert mathematical symbols directly
+to XeLaTeX, you can insert mathematical symbols directly
 \href{https://en.wikipedia.org/wiki/Mathematical_operators_and_symbols_in_Unicode}{in
 unicode}, as follows: \(∀ y ∈ ℕ, ∃ x ∈ ℕ, y = x²\), but of course you
 can always fall back to usual \LaTeX{} notation, using
 e.g.~\passthrough{\lstinline!\\forall!} to produce \(\forall\).
 
 You can add additional unicode symbols that may not be supported by this
-template or its font using the model in
-\passthrough{\lstinline!head\_a.tex!}, additionaly forcing e.g.~the
-symbol ``↔'' to be rendered in math mode using
-\passthrough{\lstinline!\\ensuremath!}.
+template or its font using the model
+
+\begin{lstlisting}
+\newunicodechar{<unicode symbol>}{\ensuremath{<latex command>}}
+\end{lstlisting}
+
+(in \passthrough{\lstinline!head\_a.tex!} in the markdown version), in
+this case additionally forcing the symbol
+\passthrough{\lstinline!<unicode symbol>!} to be rendered in math mode
+using \passthrough{\lstinline!\\ensuremath!}.
 
 \hypertarget{theorem-proof-and-others-environments}{%
 \section{Theorem, Proof, and Others
 Environments}\label{theorem-proof-and-others-environments}}
 
+\begin{description}
+\item[Markdown only]
 You can state e.g.~theorems and proofs using pandoc's built-in
 \href{https://pandoc.org/MANUAL.html\#definition-lists}{``\emph{Definition
-list}''}:
+list}''}, that are rendered as \passthrough{\lstinline!description!}
+environments in \LaTeX.
 
 \begin{description}
 \tightlist
@@ -895,10 +928,12 @@ Every \(n ∈ ℕ\), \(n >1\) has a unique prime factorization.
 \item[Proof]
 Carl Friedrich Gauss told me so. \qed
 \end{description}
+\end{description}
 
-But if you want more advances features (numbering, references, automatic
-``qed'' (□) symbol, more control over the style, and the like), then you
-need to use \LaTeX:
+To insert numbered theorems, definitions, and the like, and be able to
+reference them or add automatically the ``qed'' (□) symbol, you need to
+use \LaTeX's \passthrough{\lstinline!theorem!} environment,
+\passthrough{\lstinline!label!} commands, etc.
 
 \begin{theorem}[Pythagoras theorem]
 \label{thm:pythagoras}
@@ -909,6 +944,9 @@ need to use \LaTeX:
     Proving \autoref{thm:pythagoras} is not that easy.
 \end{proof}
 
+\begin{description}
+\tightlist
+\item[Markdown only]
 If you would rather keep the ``pure'' markdown syntax but improve pandoc
 using a filter, you can look at
 \href{https://github.com/jdutant/statement}{the pandoc filter
@@ -916,6 +954,7 @@ using a filter, you can look at
 \href{https://github.com/jdutant/statement\#related-filters}{discussion
 on related filters}, but it may be more difficult to install and use
 properly.
+\end{description}
 
 \hypertarget{formal-proofs}{%
 \section{Formal Proofs}\label{formal-proofs}}
@@ -941,11 +980,15 @@ Pages}\label{figures-tables-code-listings-and-landscape-pages}}
 \hypertarget{figures}{%
 \section{Figures}\label{figures}}
 
+\begin{description}
+\tightlist
+\item[Markdown only]
 You can easily insert
 \href{https://pandoc.org/MANUAL.html\#images}{images and figures} using
 Pandoc, as in \autoref{fig:d_un_autre_age}, a painting by
 \href{http://jeromeminard.com/travaux/}{Jérôme Minard} under
 \href{https://forceg.jimdofree.com/licence-art-libre/}{copyleft}.
+\end{description}
 
 \begin{figure}
 \centering
@@ -956,35 +999,27 @@ Pandoc, as in \autoref{fig:d_un_autre_age}, a painting by
 \hypertarget{tables}{%
 \section{Tables}\label{tables}}
 
+\begin{description}
+\tightlist
+\item[Markdown only]
 You can write tables using
 \href{https://pandoc.org/MANUAL.html\#tables}{pandoc's syntax\emph{es}},
 as in Tables \ref{tbl:demo1}, \ref{tbl:demo2} and \ref{tbl:demo3} (all
 borrowed from
-\url{https://www.flutterbys.com.au/stats/tut/tut17.3.html}):
+\url{https://www.flutterbys.com.au/stats/tut/tut17.3.html}).
+\end{description}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1528}}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1667}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1667}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.15}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.17}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.17}}@{}}
 \caption{The price of categories \label{tbl:demo1}}\tabularnewline
 \toprule
-\begin{minipage}[b]{\linewidth}\raggedright
-Column A
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Column B
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-Column C
-\end{minipage} \\
+Column A & Column B & Column C \\
 \midrule
 \endfirsthead
 \toprule
-\begin{minipage}[b]{\linewidth}\raggedright
-Column A
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Column B
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-Column C
-\end{minipage} \\
+Column A & Column B & Column C \\
 \midrule
 \endhead
 Category 1 High & High 95.00 & 100.00 \\
@@ -1010,29 +1045,17 @@ Low & Cat 3 & C & 80.00 \\
 \end{longtable}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2222}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2222}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2917}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.22}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.22}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.29}}@{}}
 \caption{The price and advantages of fruits
 \label{tbl:demo3}}\tabularnewline
 \toprule
-\begin{minipage}[b]{\linewidth}\raggedright
-Fruit
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Price
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Advantages
-\end{minipage} \\
+Fruit & Price & Advantages \\
 \midrule
 \endfirsthead
 \toprule
-\begin{minipage}[b]{\linewidth}\raggedright
-Fruit
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Price
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Advantages
-\end{minipage} \\
+Fruit & Price & Advantages \\
 \midrule
 \endhead
 Bananas & \$1.34 & \begin{minipage}[t]{\linewidth}\raggedright
@@ -1060,10 +1083,16 @@ Oranges & \$2.10 & \begin{minipage}[t]{\linewidth}\raggedright
 \section{Code Listings}\label{code-listings}}
 
 Code is displayed using the listings package. Check the ``Table 1:
-Predefined languages'' of the listings package to see the list of
-supported languages by default. Your can display code using
+Predefined languages'' of the listings package documentation to see the
+list of supported languages by default.
+
+\begin{description}
+\tightlist
+\item[Markdown only]
+Your can display code using
 \href{https://pandoc.org/MANUAL.html\#verbatim-code-blocks}{various
 possible syntaxes}.
+\end{description}
 
 As a fenced block:
 
@@ -1100,10 +1129,17 @@ for num in {000..2}; do echo "$num"; done
 \section{Landscape Pages}\label{landscape-pages}}
 
 You can obtain landscape pages using the landscape package in \LaTeX.
-This feature is not accessible in pure markdown.
+
+\begin{description}
+\tightlist
+\item[Markdown only]
+This feature is not accessible in pure markdown: if you want to have
+landscape pages, you need to use \LaTeX commands in your document.
+\end{description}
 
 Note that the drawing presented in \autoref{fig:language} was obtained
-using \LaTeX's package tiKz.
+using \LaTeX's package tiKz, and that the source code is shared in the
+pictures folder.
 
 \begin{landscape}
     \vspace*{\fill} 
@@ -1124,7 +1160,11 @@ using \LaTeX's package tiKz.
 
 The margin have been set to fit the graduate school's requirements to:
 
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
 \printinunitsof{in}{\pagevalues}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 Please, do not change those values.
 
