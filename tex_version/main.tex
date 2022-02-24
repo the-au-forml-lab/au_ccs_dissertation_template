@@ -4,22 +4,10 @@
 %
 \documentclass[
   12pt,
-  english,
   letterpaper,
   oneside,
   BCOR = 0 pt,
   singlespacing = true]{scrbook}
-\title{\yourtitle}
-\usepackage{etoolbox}
-\makeatletter
-\providecommand{\subtitle}[1]{% add subtitle to \maketitle
-  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
-}
-\makeatother
-\subtitle{\yoursubtitle}
-\author{\yourname}
-\date{\yourdate}
-
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
 \usepackage{iftex}
@@ -90,6 +78,15 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{english}
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
 % The following package and toggle
 % are needed to implement the switch
 % between the PhD and MS templates.
@@ -568,9 +565,9 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
     stringstyle=\ttfamily,
     % Style for comments
     commentstyle={\ttfamily\color[HTML]{228B22}},
-    % Line numbers at the left, and tiny
+    % Line numbers at the left, and font left by default
     numbers=left,
-    numberstyle=\tiny,
+    % numberstyle=\tiny, % uncomment if you want smaller line numbers.
     % Automatic breaking of long lines
     breaklines=true,
     % Add the "↲" symbol whenever a line is broken.
@@ -707,21 +704,22 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 % We recommend using the more modern ebproof over
 % the more "traditional" bussproofs,
 \usepackage{ebproof}
-\ifXeTeX
-  % Load polyglossia as late as possible: uses bidi with RTL langages (e.g. Hebrew, Arabic)
-  \usepackage{polyglossia}
-  \setmainlanguage[]{english}
-\else
-  \usepackage[main=english]{babel}
-% get rid of language-specific shorthands (see #6817):
-\let\LanguageShortHands\languageshorthands
-\def\languageshorthands#1{}
-\fi
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
 \usepackage[backend=biber]{biblatex}
 \addbibresource{./references/references.bib}
+
+\title{\yourtitle}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{\yoursubtitle}
+\author{\yourname}
+\date{\yourdate}
 
 \begin{document}
 \frontmatter
@@ -1010,16 +1008,28 @@ borrowed from
 \end{description}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.15}}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.17}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.17}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1528}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1667}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1667}}@{}}
 \caption{The price of categories \label{tbl:demo1}}\tabularnewline
 \toprule
-Column A & Column B & Column C \\
+\begin{minipage}[b]{\linewidth}\raggedright
+Column A
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Column B
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Column C
+\end{minipage} \\
 \midrule
 \endfirsthead
 \toprule
-Column A & Column B & Column C \\
+\begin{minipage}[b]{\linewidth}\raggedright
+Column A
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Column B
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Column C
+\end{minipage} \\
 \midrule
 \endhead
 Category 1 High & High 95.00 & 100.00 \\
@@ -1045,17 +1055,29 @@ Low & Cat 3 & C & 80.00 \\
 \end{longtable}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.22}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.22}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.29}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2222}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2222}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2917}}@{}}
 \caption{The price and advantages of fruits
 \label{tbl:demo3}}\tabularnewline
 \toprule
-Fruit & Price & Advantages \\
+\begin{minipage}[b]{\linewidth}\raggedright
+Fruit
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Price
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Advantages
+\end{minipage} \\
 \midrule
 \endfirsthead
 \toprule
-Fruit & Price & Advantages \\
+\begin{minipage}[b]{\linewidth}\raggedright
+Fruit
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Price
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Advantages
+\end{minipage} \\
 \midrule
 \endhead
 Bananas & \$1.34 & \begin{minipage}[t]{\linewidth}\raggedright
