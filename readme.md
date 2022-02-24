@@ -21,7 +21,7 @@ Important notice:
 
 ### Details on the `tex` version
 
-The `tex` version of this template can be compiled using [latexmk](https://mg.readthedocs.io/latexmk.html), by running 
+The `tex` version of this template can be compiled using [latexmk](https://mg.readthedocs.io/latexmk.html) ([version 4.74. or higher](https://github.com/aubertc/au_ccs_dissertation_template/issues/1)), by running 
 
     latexmk -pdf -xelatex main.tex
 
