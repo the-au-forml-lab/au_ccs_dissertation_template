@@ -316,7 +316,7 @@ Please, do not change those values.
 The font used is the font ["TeX Gyre Termes Font Family"](http://www.gust.org.pl/projects/e-foundry/tex-gyre/termes), which is an extension of the standard Times New Roman that is free for commercial use, and can be [freely distributed](https://www.gust.org.pl/fonts/licenses/GUST-FONT-LICENSE.txt).
 It is set to 12pt in all of the document, and adjusted when needed to the appropriate size (particularly in the cover page, where most attributes need to be set at 16pts).
 
-The "usual" correspondance between points and \LaTeX commands is as follows:
+The "usual" correspondence between points and \LaTeX commands is as follows:
 
 \getfontsize
 
