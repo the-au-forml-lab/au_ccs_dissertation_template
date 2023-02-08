@@ -20,7 +20,6 @@ PANDOC_OPTIONS = --listings \
 		--include-in-header templates/head_b.tex \
 		--include-in-header templates/head_c.tex \
 		--metadata-file=templates/info.md
-	
 
 main.pdf : main.md
 	pandoc $< $(PANDOC_OPTIONS) -o $@

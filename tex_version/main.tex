@@ -1,3 +1,5 @@
+% !TeX program = xelatex
+% !BIB program = bibtex
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
@@ -9,16 +11,19 @@
   BCOR = 0 pt,
   singlespacing = true]{scrbook}
 \usepackage{amsmath,amssymb}
-\usepackage{lmodern}
-\usepackage{iftex}
+\usepackage{iftex}h
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
   \setmainfont[Path=fonts/,Extension=.otf,UprightFont=*-regular,BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-BoldItalic]{texgyretermes}
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
@@ -38,13 +43,6 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdflang={en},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage[top=1in, left=1.5in, right=1in, bottom=1in, truedimen,
 twoside=false, bindingoffset=0pt, nohead]{geometry}
 \usepackage{listings}
@@ -84,6 +82,10 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 \usepackage[bidi=default]{babel}
 \fi
 \babelprovide[main,import]{english}
+\ifPDFTeX
+\else
+\babelfont[english]{rm}{texgyretermes}
+\fi
 % get rid of language-specific shorthands (see #6817):
 \let\LanguageShortHands\languageshorthands
 \def\languageshorthands#1{}
@@ -257,12 +259,14 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 % Meta-data %
 %%%%%%%%%%%%%
 
-\hypersetup{
-    pdftitle={\yourtitle},
-    pdfauthor={\yourname},
-    pdflang={en},
-    pdfkeywords={\yourkeywords},
-    pdfauthor={\yourname}
+\AtEndPreamble{
+    \hypersetup{
+        pdftitle={\yourtitle},
+        pdfauthor={\yourname},
+        pdflang={en},
+        pdfkeywords={\yourkeywords},
+        pdfauthor={\yourname}
+    }
 }
 
 
@@ -498,29 +502,24 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 \makeatother
 
 % Setup new colors
-\hypersetup{
-    linkcolor=augustagrey,
-    citecolor=augustagrey,
-    filecolor=augustablue,
-    urlcolor=augustablue,
-    menucolor=augustagrey,
-    runcolor=augustablue,
-    linkbordercolor=augustagrey,
-    citebordercolor=augustagrey,
-    filebordercolor=augustablue,
-    urlbordercolor=augustablue,
-    menubordercolor=augustagrey,
-    runbordercolor=augustablue,
-    footnotecolor=augustagrey,
+\AtEndPreamble{
+    \hypersetup{
+        linkcolor=augustagrey,
+        citecolor=augustagrey,
+        filecolor=augustablue,
+        urlcolor=augustablue,
+        menucolor=augustagrey,
+        runcolor=augustablue,
+        linkbordercolor=augustagrey,
+        citebordercolor=augustagrey,
+        filebordercolor=augustablue,
+        urlbordercolor=augustablue,
+        menubordercolor=augustagrey,
+        runbordercolor=augustablue,
+        footnotecolor=augustagrey,
+    }
 }
 
-\makeatletter
-\Hy@AtBeginDocument{%
-  \def\@pdfborder{0 0 0}         % Overrides border definition set with colorlinks=true
-  \def\@pdfborderstyle{/S/U/W 1} % Overrides border style set with colorlinks=true
-                                 % Hyperlink border style will be underline of width 1pt
-}
-\makeatother
 
 
 % For sideways figures and landscape pages.
@@ -709,6 +708,13 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 \fi
 \usepackage[backend=biber]{biblatex}
 \addbibresource{./references/references.bib}
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdflang={en},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
 
 \title{\yourtitle}
 \usepackage{etoolbox}
@@ -1015,7 +1021,7 @@ borrowed from
   >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1667}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1667}}@{}}
 \caption{The price of categories \label{tbl:demo1}}\tabularnewline
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Column A
 \end{minipage} & \begin{minipage}[b]{\linewidth}\centering
@@ -1023,9 +1029,9 @@ Column B
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
 Column C
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endfirsthead
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Column A
 \end{minipage} & \begin{minipage}[b]{\linewidth}\centering
@@ -1033,28 +1039,30 @@ Column B
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
 Column C
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 Category 1 High & High 95.00 & 100.00 \\
 Category 2 High & High 82.50 & 80.50 \\
-\bottomrule
 \end{longtable}
 
 \begin{longtable}[]{@{}llcr@{}}
 \caption{Illustrating how to align entries in a table
 \label{tbl:demo2}}\tabularnewline
-\toprule
+\toprule\noalign{}
 Default & Left & Center & Right \\
-\midrule
+\midrule\noalign{}
 \endfirsthead
-\toprule
+\toprule\noalign{}
 Default & Left & Center & Right \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 High & Cat 1 & A & 100.00 \\
 High & Cat 2 & B & 85.50 \\
 Low & Cat 3 & C & 80.00 \\
-\bottomrule
 \end{longtable}
 
 \begin{longtable}[]{@{}
@@ -1063,7 +1071,7 @@ Low & Cat 3 & C & 80.00 \\
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2917}}@{}}
 \caption{The price and advantages of fruits
 \label{tbl:demo3}}\tabularnewline
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Fruit
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -1071,9 +1079,9 @@ Price
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Advantages
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endfirsthead
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Fruit
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -1081,8 +1089,10 @@ Price
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Advantages
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 Bananas & \$1.34 & \begin{minipage}[t]{\linewidth}\raggedright
 \begin{itemize}
 \tightlist
@@ -1101,7 +1111,6 @@ Oranges & \$2.10 & \begin{minipage}[t]{\linewidth}\raggedright
   tasty
 \end{itemize}
 \end{minipage} \\
-\bottomrule
 \end{longtable}
 
 \hypertarget{code-listings}{%
@@ -1205,7 +1214,7 @@ distributed}. It is set to 12pt in all of the document, and adjusted
 when needed to the appropriate size (particularly in the cover page,
 where most attributes need to be set at 16pts).
 
-The ``usual'' correspondance between points and \LaTeX commands is as
+The ``usual'' correspondence between points and \LaTeX commands is as
 follows:
 
 \getfontsize

@@ -96,29 +96,24 @@
 \makeatother
 
 % Setup new colors
-\hypersetup{
-    linkcolor=augustagrey,
-    citecolor=augustagrey,
-    filecolor=augustablue,
-    urlcolor=augustablue,
-    menucolor=augustagrey,
-    runcolor=augustablue,
-    linkbordercolor=augustagrey,
-    citebordercolor=augustagrey,
-    filebordercolor=augustablue,
-    urlbordercolor=augustablue,
-    menubordercolor=augustagrey,
-    runbordercolor=augustablue,
-    footnotecolor=augustagrey,
+\AtEndPreamble{
+    \hypersetup{
+        linkcolor=augustagrey,
+        citecolor=augustagrey,
+        filecolor=augustablue,
+        urlcolor=augustablue,
+        menucolor=augustagrey,
+        runcolor=augustablue,
+        linkbordercolor=augustagrey,
+        citebordercolor=augustagrey,
+        filebordercolor=augustablue,
+        urlbordercolor=augustablue,
+        menubordercolor=augustagrey,
+        runbordercolor=augustablue,
+        footnotecolor=augustagrey,
+    }
 }
 
-\makeatletter
-\Hy@AtBeginDocument{%
-  \def\@pdfborder{0 0 0}         % Overrides border definition set with colorlinks=true
-  \def\@pdfborderstyle{/S/U/W 1} % Overrides border style set with colorlinks=true
-                                 % Hyperlink border style will be underline of width 1pt
-}
-\makeatother
 
 
 % For sideways figures and landscape pages.

@@ -3,7 +3,7 @@ classoption:
     - oneside
     - BCOR = 0 pt
     - singlespacing = true 
-mainfont: texgyretermes
+mainfont: TeXGyreTermes
 mainfontoptions:
 - Path=fonts/
 - Extension=.otf
