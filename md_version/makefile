@@ -3,7 +3,7 @@
 # -------------------------------
 
 # The flags are explained at https://pandoc.org/MANUAL.html
-# The flags after "--pdf-engine-opt" are for latexmk, documented
+# The options after "--pdf-engine-opt" are for latexmk, documented
 # at https://github.com/debian-tex/latexmk#readme.
 
 # Options for all output formats
