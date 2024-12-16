@@ -68,7 +68,7 @@ Please, refer to the [Thesis/PhD Dissertation Preparation Booklet](https://www.a
 
 ## Credits and Licence
 
-- This template was created taking inspiration from the [Biostat dissertation template](https://guides.augusta.edu/ld.php?content_id=38486754).
+- This template was created taking inspiration from the [Biostat dissertation template](https://guides.augusta.edu/ld.php?content_id=38486754). [or this one?](https://guides.augusta.edu/ld.php?content_id=78256224)
 - This template uses and redistributes the [TeX Gyre Termes](http://www.gust.org.pl/projects/e-foundry/tex-gyre/termes) font, placed under the [GUST Font License](https://tug.org/fonts/licenses/GUST-FONT-LICENSE.txt), which is an extension of the [The LaTeX Project Public License](https://www.latex-project.org/lppl.txt).
 - Unless otherwise noted, this template is under [Creative Commons Attribution 4.0 International](LICENSE.md).
 - © [Clément Aubert](https://spots.augusta.edu/caubert/), 2021-2022
