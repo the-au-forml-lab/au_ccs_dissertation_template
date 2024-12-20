@@ -1,7 +1,10 @@
 # Augusta University School of Computer and Cyber Sciences Ms and PhD Template
 
-> [!TIP] Get started!
+> [!TIP]
+> **Getting Started**
+> 
 > Download md_version.zip or tex_version.zip to write your thesis in markdown or latex from <https://github.com/the-au-forml-lab/au_ccs_dissertation_template/releases/latest/>.
+>
 > You are welcome to reach out to <caubert@augusta.edu> or through [github's issue tracker](https://github.com/the-au-forml-lab/au_ccs_dissertation_template/issues) if you have questions, preferably after reading the instructions below and the [additional documentation][md_version/main.pdf].
 
 ## Presentation
