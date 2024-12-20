@@ -1,17 +1,18 @@
-% !TeX program = xelatex
-% !BIB program = bibtex
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
-%
 \documentclass[
   12pt,
   letterpaper,
   oneside,
   BCOR = 0 pt,
   singlespacing = true]{scrbook}
+\usepackage{xcolor}
+\usepackage[top=1in, left=1.5in, right=1in, bottom=1in, truedimen,
+twoside=false, bindingoffset=0pt, nohead]{geometry}
 \usepackage{amsmath,amssymb}
-\usepackage{iftex}h
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
@@ -24,7 +25,7 @@
 \usepackage{lmodern}
 \ifPDFTeX\else
   % xetex/luatex font selection
-  \setmainfont[Path=fonts/,Extension=.otf,UprightFont=*-regular,BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-BoldItalic]{texgyretermes}
+    \setmainfont[Path=fonts/,Extension=.otf,UprightFont=*-regular,BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-BoldItalic]{TeXGyreTermes}
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -42,9 +43,6 @@
 }{% if KOMA class
   \KOMAoptions{parskip=half}}
 \makeatother
-\usepackage{xcolor}
-\usepackage[top=1in, left=1.5in, right=1in, bottom=1in, truedimen,
-twoside=false, bindingoffset=0pt, nohead]{geometry}
 \usepackage{listings}
 \newcommand{\passthrough}[1]{#1}
 \lstset{defaultdialect=[5.3]Lua}
@@ -61,21 +59,19 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 \makesavenoteenv{longtable}
 \usepackage{graphicx}
 \makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
 % Set default figure placement to htbp
-\makeatletter
 \def\fps@figure{htbp}
 \makeatother
-\setlength{\emergencystretch}{3em} % prevent overfull lines
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{5}
 \ifLuaTeX
 \usepackage[bidi=basic]{babel}
 \else
@@ -84,11 +80,19 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 \babelprovide[main,import]{english}
 \ifPDFTeX
 \else
-\babelfont[english]{rm}{texgyretermes}
+\babelfont{rm}[Path=fonts/,Extension=.otf,UprightFont=*-regular,BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-BoldItalic]{TeXGyreTermes}
 \fi
 % get rid of language-specific shorthands (see #6817):
 \let\LanguageShortHands\languageshorthands
 \def\languageshorthands#1{}
+\ifLuaTeX
+  \usepackage[english]{selnolig} % disable illegal ligatures
+\fi
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage[backend=biber]{biblatex}
+\addbibresource{./references/references.bib}
 % The following package and toggle
 % are needed to implement the switch
 % between the PhD and MS templates.
@@ -703,12 +707,7 @@ twoside=false, bindingoffset=0pt, nohead]{geometry}
 % We recommend using the more modern ebproof over
 % the more "traditional" bussproofs,
 \usepackage{ebproof}
-\ifLuaTeX
-  \usepackage{selnolig}  % disable illegal ligatures
-\fi
-\usepackage[backend=biber]{biblatex}
-\addbibresource{./references/references.bib}
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
@@ -748,8 +747,7 @@ Explanatory matter and opinion must be omitted.
 \cleardoublepage
 \pagenumbering{arabic}
 
-\hypertarget{introduction}{%
-\chapter{Introduction}\label{introduction}}
+\chapter{Introduction}\label{introduction}
 
 This document is a guide on how to use it (``how meta!''), and its
 structure does not reflect the structure of a Thesis: you will need to
@@ -781,8 +779,7 @@ The comments applicable only to the markdown version of this document
 are indicated in such environments.
 \end{description}
 
-\hypertarget{title-levels}{%
-\section{Title Levels}\label{title-levels}}
+\section{Title Levels}\label{title-levels}
 
 As indicated in the koma-script manual, the class
 \passthrough{\lstinline!scrbook!} that is used for this document has
@@ -808,28 +805,23 @@ and that increasing the number of \passthrough{\lstinline!\#!} increases
 the level of heading.
 \end{description}
 
-\hypertarget{subsection}{%
-\subsection{Subsection}\label{subsection}}
+\subsection{Subsection}\label{subsection}
 
 This is a subsection.
 
-\hypertarget{subsubsection}{%
-\subsubsection{Subsubsection}\label{subsubsection}}
+\subsubsection{Subsubsection}\label{subsubsection}
 
 This is a subsubsection.
 
-\hypertarget{paragraph}{%
-\paragraph{Paragraph}\label{paragraph}}
+\paragraph{Paragraph}\label{paragraph}
 
 This is a paragraph.
 
-\hypertarget{sub-paragraph}{%
-\subparagraph{Sub-Paragraph}\label{sub-paragraph}}
+\subparagraph{Sub-Paragraph}\label{sub-paragraph}
 
 This is a sub-paragraph.
 
-\hypertarget{debugging}{%
-\section{Debugging}\label{debugging}}
+\section{Debugging}\label{debugging}
 
 If this template does not ``work'' as expected, feel free to
 \href{https://github.com/aubertc/au_ccs_dissertation_template/issues}{open
@@ -838,9 +830,7 @@ an issue} or reach out to
 after having looked at \passthrough{\lstinline!aux/input.log!} as
 (probably) indicated by latexmk.
 
-\hypertarget{references-and-bibliography}{%
-\chapter{References and
-Bibliography}\label{references-and-bibliography}}
+\chapter{References and Bibliography}\label{references-and-bibliography}
 
 Prepare your references using \LaTeX's bibliography system
 \href{http://www.bibtex.org/Using/}{\BibTeX}: this template uses by
@@ -861,7 +851,7 @@ entry}. Finally, you can ``tidy'' your .bib file using
 \href{https://flamingtempura.github.io/bibtex-tidy/}{bibtex-tidy}.
 
 The list of references is automatically inserted in
-\protect\hyperlink{chap:references}{the list of references},
+\hyperref[chap:references]{the list of references},
 p.~\pageref{chap:references}. Use \LaTeX's
 \passthrough{\lstinline!\\cite!} command to insert references.
 
@@ -884,14 +874,13 @@ You can insert
 \href{https://pandoc.org/MANUAL.html\#links-1}{hyperlinks} in different
 ways, including hyperlinks to this document\footnote{You may note that
   the footnote number is itself a link.} using e.g.~the
-\protect\hyperlink{introduction}{link automatically added to all
-chapters}, following the convention described
+\hyperref[introduction]{link automatically added to all chapters},
+following the convention described
 \href{https://pandoc.org/MANUAL.html\#heading-identifiers}{in pandoc's
 manual}.
 \end{description}
 
-\hypertarget{writing-mathematics}{%
-\chapter{Writing Mathematics}\label{writing-mathematics}}
+\chapter{Writing Mathematics}\label{writing-mathematics}
 
 \LaTeX can be used to render
 \href{https://en.m.wikibooks.org/wiki/LaTeX/Mathematics}{complex
@@ -914,9 +903,8 @@ this case additionally forcing the symbol
 \passthrough{\lstinline!<unicode symbol>!} to be rendered in math mode
 using \passthrough{\lstinline!\\ensuremath!}.
 
-\hypertarget{theorem-proof-and-others-environments}{%
 \section{Theorem, Proof, and Others
-Environments}\label{theorem-proof-and-others-environments}}
+Environments}\label{theorem-proof-and-others-environments}
 
 \begin{description}
 \item[Markdown only]
@@ -963,8 +951,7 @@ on related filters}, but it may be more difficult to install and use
 properly.
 \end{description}
 
-\hypertarget{formal-proofs}{%
-\section{Formal Proofs}\label{formal-proofs}}
+\section{Formal Proofs}\label{formal-proofs}
 
 You can easily represent formal proofs using \LaTeX's ebproof or
 bussproof packages:
@@ -980,12 +967,10 @@ bussproof packages:
     \end{prooftree}
 \end{center}
 
-\hypertarget{figures-tables-code-listings-and-landscape-pages}{%
 \chapter{Figures, Tables, (Code) Listings and Landscape
-Pages}\label{figures-tables-code-listings-and-landscape-pages}}
+Pages}\label{figures-tables-code-listings-and-landscape-pages}
 
-\hypertarget{figures}{%
-\section{Figures}\label{figures}}
+\section{Figures}\label{figures}
 
 \begin{description}
 \tightlist
@@ -999,12 +984,11 @@ Pandoc, as in \autoref{fig:d_un_autre_age}, a painting by
 
 \begin{figure}
 \centering
-\includegraphics[width=0.8\textwidth,height=\textheight]{pictures/D_un_autre_age.jpg}
+\includegraphics[width=0.8\linewidth,height=\textheight,keepaspectratio]{pictures/D_un_autre_age.jpg}
 \caption{\emph{D'un autre âge}\label{fig:d_un_autre_age}}
 \end{figure}
 
-\hypertarget{tables}{%
-\section{Tables}\label{tables}}
+\section{Tables}\label{tables}
 
 \begin{description}
 \tightlist
@@ -1017,9 +1001,9 @@ borrowed from
 \end{description}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1528}}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1667}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1667}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1528}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1667}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1667}}@{}}
 \caption{The price of categories \label{tbl:demo1}}\tabularnewline
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
@@ -1066,9 +1050,9 @@ Low & Cat 3 & C & 80.00 \\
 \end{longtable}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2222}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2222}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2917}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2222}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2222}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2917}}@{}}
 \caption{The price and advantages of fruits
 \label{tbl:demo3}}\tabularnewline
 \toprule\noalign{}
@@ -1113,8 +1097,7 @@ Oranges & \$2.10 & \begin{minipage}[t]{\linewidth}\raggedright
 \end{minipage} \\
 \end{longtable}
 
-\hypertarget{code-listings}{%
-\section{Code Listings}\label{code-listings}}
+\section{Code Listings}\label{code-listings}
 
 Code is displayed using the listings package. Check the ``Table 1:
 Predefined languages'' of the listings package documentation to see the
@@ -1159,8 +1142,7 @@ for num in {000..2}; do echo "$num"; done
 
 \lstinputlisting[language=C, caption={"\emph{Hello World}" in C}, label={lst:demo3}]{code/hello_world.c}
 
-\hypertarget{landscape-pages}{%
-\section{Landscape Pages}\label{landscape-pages}}
+\section{Landscape Pages}\label{landscape-pages}
 
 You can obtain landscape pages using the landscape package in \LaTeX.
 
@@ -1186,11 +1168,9 @@ pictures folder.
     \vspace*{\fill}
 \end{landscape}
 
-\hypertarget{margins-and-fonts}{%
-\chapter{Margins and Fonts}\label{margins-and-fonts}}
+\chapter{Margins and Fonts}\label{margins-and-fonts}
 
-\hypertarget{margins}{%
-\section{Margins}\label{margins}}
+\section{Margins}\label{margins}
 
 The margin have been set to fit the graduate school's requirements to:
 
@@ -1202,8 +1182,7 @@ The margin have been set to fit the graduate school's requirements to:
 
 Please, do not change those values.
 
-\hypertarget{fonts}{%
-\section{Fonts}\label{fonts}}
+\section{Fonts}\label{fonts}
 
 The font used is the font
 \href{http://www.gust.org.pl/projects/e-foundry/tex-gyre/termes}{``TeX
@@ -1225,8 +1204,7 @@ follows:
 
 \appendix
 
-\hypertarget{appendix-a-optional}{%
-\chapter{Appendix A (Optional)}\label{appendix-a-optional}}
+\chapter{Appendix A (Optional)}\label{appendix-a-optional}
 
 Insert here protocols, figures not included, larger listings, etc.
 
