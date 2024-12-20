@@ -23,10 +23,8 @@ jobs:
         fetch-depth: 0
     - name: Setup pandoc ⚙️
       run: |
-        sudo apt-get update
         wget https://github.com/jgm/pandoc/releases/download/3.5/pandoc-3.5-1-amd64.deb
         sudo dpkg -i pandoc-3.5-1-amd64.deb
-        sudo apt-get install -y texlive texlive-xetex texlive-latex-extra 
     - name: Build 🏗️
       run: |
         pwd
