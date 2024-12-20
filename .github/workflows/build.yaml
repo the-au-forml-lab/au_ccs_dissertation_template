@@ -30,6 +30,7 @@ jobs:
     - name: Build 🏗️
       run: |
         pwd
+        echo ${{ github.workspace }} 
         cd /home/runner/work/the-au-forml-lab/au_ccs_dissertation_template/md_version/
         make tex
         cd ../
