@@ -1,11 +1,10 @@
 # Augusta University School of Computer and Cyber Sciences Ms and PhD Template
 
-> [!TIP]
-> **Getting Started**
-> 
-> Download md_version.zip or tex_version.zip to write your thesis in markdown or latex from <https://github.com/the-au-forml-lab/au_ccs_dissertation_template/releases/latest/>.
->
-> You are welcome to reach out to <caubert@augusta.edu> or through [github's issue tracker](https://github.com/the-au-forml-lab/au_ccs_dissertation_template/issues) if you have questions, preferably after reading the instructions below and the [additional documentation][md_version/main.pdf].
+## Quick Start
+ 
+Download `md_version.zip` or `tex_version.zip` to write your thesis in markdown or latex from <https://github.com/the-au-forml-lab/au_ccs_dissertation_template/releases/latest/>.
+
+You are welcome to reach out to <caubert@augusta.edu> or through [github's issue tracker](https://github.com/the-au-forml-lab/au_ccs_dissertation_template/issues) if you have questions, preferably after reading the instructions below and the [additional documentation](md_version/main.pdf).
 
 ## Presentation
 
@@ -17,7 +16,7 @@ Students more comfortable with the `docx` format or not willing to learn to use 
 > This template was developed with extreme care, and students and advisors are encouraged to report any mismatch or issue they may encounter, to <caubert@augusta.edu> or through [github's issue tracker](https://github.com/the-au-forml-lab/au_ccs_dissertation_template/issues).
 
 
-This template is offered in two versions:
+This template is offered in two versions, at <https://github.com/the-au-forml-lab/au_ccs_dissertation_template/releases/latest/>:
 
 - The `tex` version is a standard `tex` document that can be compiled using [latexmk](https://mg.readthedocs.io/latexmk.html) or any standard LaTeX distribution,
 - The markdown version is a [markdown](https://commonmark.org/) document that can be compiled using [pandoc](https://pandoc.org/).
@@ -37,7 +36,7 @@ The `tex` version of this template can be compiled using [latexmk](https://mg.re
 
     latexmk -pdf -xelatex main.tex
 
-in the tex_version folder. The "main.tex" document is "standalone" in the sense that it is not divided into smaller `tex` files, but students should feel free to split it by using the [`\input{…}` and `\include{…}` commands](https://tex.stackexchange.com/q/246/34551).
+in the `tex_version` folder. The "main.tex" document is "standalone" in the sense that it is not divided into smaller `tex` files, but students should feel free to split it by using the [`\input{…}` and `\include{…}` commands](https://tex.stackexchange.com/q/246/34551).
 
 
 Start by looking for
@@ -60,7 +59,7 @@ The markdown version of this template can be compiled using [pandoc](https://pan
 
     make
     
-in the md_version folder. 
+in the `md_version` folder. 
 
 Start by editing the file info/info.tex with your information.
 
@@ -72,11 +71,9 @@ Start by editing the file info/info.tex with your information.
 - [latexmk](https://mg.readthedocs.io/latexmk.html) ([version 4.74. or higher](https://github.com/aubertc/au_ccs_dissertation_template/issues/1), it is possible that it is already part of your LaTeX installation),
 - [entr](https://github.com/eradman/entr) if you want  to use the command `make watch` that automatically re-compile your source when it is saved.
 
-
 ## Additional Information
 
 Please, refer to the [Thesis/PhD Dissertation Preparation Booklet](https://www.augusta.edu/gradschool/documents/thesis-dissertation-preparation-booklet.pdf) from the graduate school and the University Libraries for additional information, tips and advises.
-
 
 ## Credits and Licence
 
