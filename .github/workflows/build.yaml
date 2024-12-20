@@ -32,6 +32,8 @@ jobs:
         cd ../
         zip -r tex_version.zip tex_version
         zip -r md_version.zip md_version        
+        cd tex_version/
+        latexmk -pdf -xelatex main.tex
     - name: Create package 🎁
       uses: crowbarmaster/GH-Automatic-Releases@latest
       with:
@@ -40,5 +42,3 @@ jobs:
         prerelease: true
         draft: false
         files: tex_version.zip
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3.0.1
