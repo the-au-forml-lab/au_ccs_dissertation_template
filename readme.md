@@ -1,5 +1,9 @@
 # Augusta University School of Computer and Cyber Sciences Ms and PhD Template
 
+> [!TIP] Get started!
+> Download md_version.zip or tex_version.zip to write your thesis in markdown or latex from <https://github.com/the-au-forml-lab/au_ccs_dissertation_template/releases/latest/>.
+> You are welcome to reach out to <caubert@augusta.edu> or through [github's issue tracker](https://github.com/the-au-forml-lab/au_ccs_dissertation_template/issues) if you have questions, preferably after reading the instructions below and the [additional documentation][md_version/main.pdf].
+
 ## Presentation
 
 This template was designed for Ms and PhD students from the [School of Cyber and Computer Sciences](https://www.augusta.edu/ccs/) at [Augusta University](https://www.augusta.edu/) as an alternative to the standard, ["ETD"](https://guides.augusta.edu/ld.php?content_id=64866487) template offered by the Graduate School.
@@ -7,13 +11,13 @@ Students more comfortable with the `docx` format or not willing to learn to use 
 
 > [!CAUTION]
 > The student and their advisor are strongly encouraged to make sure that the manuscript comply with the [Forms, Policies, and Procedures](https://www.augusta.edu/gradschool/student-resources.php) of [Augusta University](https://www.augusta.edu/)'s [Graduate School](https://www.augusta.edu/gradschool/) themselves.
-> This template was developed with extreme care, and students and advisors are encouraged to report any mismatch or issue they may encounter, to caubert@augusta.edu or through [github's issue tracker](https://github.com/the-au-forml-lab/au_ccs_dissertation_template/issues).
+> This template was developed with extreme care, and students and advisors are encouraged to report any mismatch or issue they may encounter, to <caubert@augusta.edu> or through [github's issue tracker](https://github.com/the-au-forml-lab/au_ccs_dissertation_template/issues).
 
 
 This template is offered in two versions:
 
-- The [`tex` version](tex_version) is a standard `tex` document that can be compiled using [latexmk](https://mg.readthedocs.io/latexmk.html) or any standard LaTeX distribution,
-- The [markdown version](md_version) is a [markdown](https://commonmark.org/) document that can be compiled using [pandoc](https://pandoc.org/).
+- The `tex` version is a standard `tex` document that can be compiled using [latexmk](https://mg.readthedocs.io/latexmk.html) or any standard LaTeX distribution,
+- The markdown version is a [markdown](https://commonmark.org/) document that can be compiled using [pandoc](https://pandoc.org/).
 
 Note that the `tex` version is actually obtained from the markdown version, thanks to pandoc's ability to convert markdown documents into `tex` documents.
 This conversion takes place when the markdown version is used to produce the final `pdf` "under the hood", which allows the markdown version to use _both_ the LaTeX and the markdown syntaxes.
