@@ -27,9 +27,6 @@ jobs:
         sudo dpkg -i pandoc-3.5-1-amd64.deb
     - name: Build 🏗️
       run: |
-        pwd
-        ls
-        cd md_version/
         cd ${{ github.workspace }}/md_version/
         make tex
         cd ../
@@ -45,5 +42,3 @@ jobs:
         files: tex_version.zip
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3.0.1
-      with:
-        path: public
