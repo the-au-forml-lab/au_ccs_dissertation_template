@@ -32,8 +32,6 @@ jobs:
         cd ../
         zip -r tex_version.zip tex_version
         zip -r md_version.zip md_version        
-        cd tex_version/
-        latexmk -pdf -xelatex main.tex
     - name: Create package 🎁
       uses: crowbarmaster/GH-Automatic-Releases@latest
       with:
