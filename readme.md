@@ -5,6 +5,11 @@
 This template was designed for Ms and PhD students from the [School of Cyber and Computer Sciences](https://www.augusta.edu/ccs/) at [Augusta University](https://www.augusta.edu/) as an alternative to the standard, ["ETD"](https://guides.augusta.edu/ld.php?content_id=64866487) template offered by the Graduate School.
 Students more comfortable with the `docx` format or not willing to learn to use [LaTeX](https://www.latex-project.org/) and / or [markdown](https://commonmark.org/) should use this standard template instead.
 
+> [!CAUTION]
+> The student and their advisor are strongly encouraged to make sure that the manuscript comply with the [Forms, Policies, and Procedures](https://www.augusta.edu/gradschool/student-resources.php) of [Augusta University](https://www.augusta.edu/)'s [Graduate School](https://www.augusta.edu/gradschool/) themselves.
+> This template was developed with 
+
+
 This template is offered in two versions:
 
 - The [`tex` version](tex_version) is a standard `tex` document that can be compiled using [latexmk](https://mg.readthedocs.io/latexmk.html) or any standard LaTeX distribution,
@@ -68,7 +73,10 @@ Please, refer to the [Thesis/PhD Dissertation Preparation Booklet](https://www.a
 
 ## Credits and Licence
 
-- This template was created taking inspiration from the [Biostat dissertation template](https://guides.augusta.edu/ld.php?content_id=38486754). [or this one?](https://guides.augusta.edu/ld.php?content_id=78256224)
-- This template uses and redistributes the [TeX Gyre Termes](http://www.gust.org.pl/projects/e-foundry/tex-gyre/termes) font, placed under the [GUST Font License](https://tug.org/fonts/licenses/GUST-FONT-LICENSE.txt), which is an extension of the [The LaTeX Project Public License](https://www.latex-project.org/lppl.txt).
+- This template was created taking inspiration from Augusta University's [Biostat dissertation template](https://guides.augusta.edu/ld.php?content_id=78256224).
+- This template uses and redistributes the [TeX Gyre Termes](http://www.gust.org.pl/projects/e-foundry/tex-gyre/termes) font (version 2.004), placed under the [GUST Font License](https://tug.org/fonts/licenses/GUST-FONT-LICENSE.txt), which is an extension of the [The LaTeX Project Public License](https://www.latex-project.org/lppl.txt).
+- This template uses and redistributes the [Symbola](http://web.archive.org/web/20180307012615/http://users.teilar.gr/~g1951d/Symbola.zip) font (version 10.24), which is "free for any use".
+- The file code/hello_world.c is courtesy of Brian Kernighan.
+- The file pictures/D_un_autre_age.jpg is courtesy of [Jérôme Minard](http://jeromeminard.com/travaux/) and under [copyleft](https://forceg.jimdofree.com/licence-art-libre/).
 - Unless otherwise noted, this template is under [Creative Commons Attribution 4.0 International](LICENSE.md).
-- © [Clément Aubert](https://spots.augusta.edu/caubert/), 2021-2022
+- © [Our contributors](https://github.com/the-au-forml-lab/au_ccs_dissertation_template/graphs/contributors), 2021-2025
