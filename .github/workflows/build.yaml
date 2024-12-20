@@ -28,6 +28,8 @@ jobs:
     - name: Build 🏗️
       run: |
         pwd
+        ls
+        cd md_version/
         cd ${{ github.workspace }}/md_version/
         make tex
         cd ../
