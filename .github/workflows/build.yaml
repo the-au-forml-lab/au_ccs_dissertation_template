@@ -1,0 +1,48 @@
+# Validate the file using e.g.
+# https://rhysd.github.io/actionlint/
+
+name: Build tex version
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'md_version/**'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Setup pandoc ⚙️
+      run: |
+        sudo apt-get update
+        wget https://github.com/jgm/pandoc/releases/download/3.5/pandoc-3.5-1-amd64.deb
+        sudo dpkg -i pandoc-3.5-1-amd64.deb
+        sudo apt-get install -y texlive texlive-xetex texlive-latex-extra 
+    - name: Build 🏗️
+      run: |
+        cd /home/runner/work/princomp.github.io/princomp.github.io/md_version/
+        make tex
+        cd ../
+        zip -r tex_version.zip tex_version
+        zip -r md_version.zip md_version        
+    - name: Create package 🎁
+      uses: crowbarmaster/GH-Automatic-Releases@latest
+      with:
+        automatic_release_tag: "latest"
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        prerelease: true
+        draft: false
+        files: tex_version.zip
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3.0.1
+      with:
+        path: public
