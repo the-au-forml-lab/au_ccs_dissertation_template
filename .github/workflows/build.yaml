@@ -19,8 +19,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
     - name: Setup pandoc ⚙️
       run: |
         wget https://github.com/jgm/pandoc/releases/download/3.5/pandoc-3.5-1-amd64.deb
@@ -39,4 +37,6 @@ jobs:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         prerelease: true
         draft: false
-        files: tex_version.zip
+        files: |
+          tex_version.zip
+          md_version.zip
