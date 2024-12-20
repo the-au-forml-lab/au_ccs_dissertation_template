@@ -135,16 +135,18 @@ Markdown only
     You can insert [hyperlinks](https://pandoc.org/MANUAL.html#links-1) in different ways, including hyperlinks to this document^[You may note that the footnote number is itself a link.] using e.g.\ the [link automatically added to all chapters](#introduction), following the convention described [in pandoc's manual](https://pandoc.org/MANUAL.html#heading-identifiers).
 
 
-# Writing Mathematics
+# Writing Mathematics{#writing-mathematics}
 
 \LaTeX can be used to render [complex mathematics expressions](https://en.m.wikibooks.org/wiki/LaTeX/Mathematics) in a relatively simple manner.
 Note that thanks to XeLaTeX, you can insert mathematical symbols directly [in unicode](https://en.wikipedia.org/wiki/Mathematical_operators_and_symbols_in_Unicode), as follows: $∀ y ∈ ℕ, ∃ x ∈ ℕ, y = x²$, but of course you can always fall back to usual \LaTeX{} notation, using e.g. `\forall` to produce $\forall$.
 
 You can add additional unicode symbols that may not be supported by this template or its font using the model 
 
-    \newunicodechar{<unicode symbol>}{\ensuremath{<latex command>}}
+```latex
+\newunicodechar{<unicode symbol>}{\ensuremath{<latex command>}}
+```
 
-(in `head_a.tex` in the markdown version), in this case additionally forcing the symbol `<unicode symbol>` to be rendered in math mode using `\ensuremath`.
+(in `head_c.tex` in the markdown version), in this case additionally forcing the symbol `<unicode symbol>` to be rendered in math mode using `\ensuremath`.
 
 
 ## Theorem, Proof, and Others Environments
@@ -313,13 +315,30 @@ Please, do not change those values.
 
 ## Fonts
 
-The font used is the font ["TeX Gyre Termes Font Family"](http://www.gust.org.pl/projects/e-foundry/tex-gyre/termes), which is an extension of the standard Times New Roman that is free for commercial use, and can be [freely distributed](https://www.gust.org.pl/fonts/licenses/GUST-FONT-LICENSE.txt).
+### Body
+
+The font used in the body of the document is ["TeX Gyre Termes Font Family"](http://www.gust.org.pl/projects/e-foundry/tex-gyre/termes), which is an extension of the standard Times New Roman that is free for commercial use, and can be [freely distributed](https://www.gust.org.pl/fonts/licenses/GUST-FONT-LICENSE.txt).
 It is set to 12pt in all of the document, and adjusted when needed to the appropriate size (particularly in the cover page, where most attributes need to be set at 16pts).
 
 The "usual" correspondence between points and \LaTeX commands is as follows:
 
 \getfontsize
 
+### Symbols
+
+For better unicode support, the Symbola font is also used.
+Starting [with version 11](http://web.archive.org/web/20181228102842/http://users.teilar.gr/%7Eg1951d/Symbola.pdf), the licence of this font is too restrictive for non-personal use.
+As a consequence, users are asked to make sure they do not use a version greater than v.10.24, which is "free for any use" and [archived on-line](http://web.archive.org/web/20180307012615/http://users.teilar.gr/~g1951d/Symbola.zip).
+
+By default, the following symbols, not available in the TeX Gyre Termes Font Family, are displayed using Symbola: 🔒, ✘, ⚠, ❓, 🔜, ℕ, ℤ, ✔, ↵, ↲, 🛡, ℝ □.
+To declare other unicode symbols as having to be displayed using the Symbola font, use
+
+```latex
+\newunicodechar{<unicode symbol>}{\symb <unicode symbol>}
+```
+
+(in `head_c.tex` in the markdown version), so that `<unicode symbol>` will be rendered using the Symbola font.
+ 
 <!--
 ⚠ Do not edit ⚠
 the three lines below.
