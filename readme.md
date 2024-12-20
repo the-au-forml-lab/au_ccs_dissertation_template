@@ -7,7 +7,7 @@ Students more comfortable with the `docx` format or not willing to learn to use 
 
 > [!CAUTION]
 > The student and their advisor are strongly encouraged to make sure that the manuscript comply with the [Forms, Policies, and Procedures](https://www.augusta.edu/gradschool/student-resources.php) of [Augusta University](https://www.augusta.edu/)'s [Graduate School](https://www.augusta.edu/gradschool/) themselves.
-> This template was developed with 
+> This template was developed with extreme care, and students and advisors are encouraged to report any mismatch or issue they may encounter, to caubert@augusta.edu or through [github's issue tracker](https://github.com/the-au-forml-lab/au_ccs_dissertation_template/issues).
 
 
 This template is offered in two versions:
