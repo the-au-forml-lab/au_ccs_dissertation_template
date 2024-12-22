@@ -16,6 +16,15 @@
 \usepackage[english]{datetime2}                    % To extract the month and year from the date.
 \usepackage{chngcntr}                              % To obtain a "global numbering" of tables and figures.
 
+% Package to display images
+\usepackage{graphicx}
+% Option to set maximum width, courtesy of https://github.com/jgm/pandoc-templates/blob/master/default.latex.orig
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+
 %%%%%%%%%%%%%%
 % Cover page %
 %%%%%%%%%%%%%%

@@ -291,7 +291,7 @@ Note that the drawing presented in \autoref{fig:language} was obtained using \La
     \vspace*{\fill} 
     \begin{figure}
         \centering
-        \includegraphics{pictures/languages_overview.pdf}
+        \includegraphics[width=\textheight]{pictures/languages_overview.pdf}
         \caption{Difference between programming languages (simplified)}
         \label{fig:language}
     \end{figure}
