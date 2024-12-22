@@ -161,18 +161,32 @@
 
 
 % Everything must be double spaced
-\linespread{2}
-% *but* the sectioning commands
-% (titles, subtitles, etc.).
+% "Double space" has multiple definitions,
+% we implement two options below, and use the 
+% first by default.
+% Refer to https://tex.stackexchange.com/q/13742
+% for more details.
+
+% Option A:
+\usepackage[nodisplayskipstretch]{setspace}
+\doublespacing
+
+% Option B:
+% Uncomment lines with two %
+% and comment Option A to use.
+%% \linespread{2}
+% But the sectionning commands
+% (titles, subtitles, etc.)
+% should *not* be double-spaced.
 % https://tex.stackexchange.com/a/365269/
-\addtokomafont{disposition}{\linespread{1}}
+%% \addtokomafont{disposition}{\linespread{1}}
 % Since biblatex is loaded quite late in the template 
 % (cf. https://github.com/jgm/pandoc-templates/blob/master/default.latex )
 % we defer this command, that let the line space in the references be only 
 % single-spaced, to the end of the preamble.
-\AtEndPreamble{
-    \AtNextBibliography{\linespread{1}}
-}
+%% \AtEndPreamble{
+%%    \AtNextBibliography{\linespread{1}}
+%% }
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
