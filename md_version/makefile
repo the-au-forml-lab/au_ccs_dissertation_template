@@ -31,7 +31,7 @@ watch :
 	find main.md  | entr -p -c 'make'
 
 clean:
-	rm main.pdf
+	rm -f main.pdf
 	rm -rf aux
 
 tex: main.md
