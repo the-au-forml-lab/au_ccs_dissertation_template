@@ -8,7 +8,6 @@ on:
     branches: [ main ]
     paths:
       - 'md_version/**'
-  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -21,8 +20,8 @@ jobs:
     - uses: actions/checkout@v4
     - name: Setup pandoc ⚙️
       run: |
-        wget https://github.com/jgm/pandoc/releases/download/3.5/pandoc-3.5-1-amd64.deb
-        sudo dpkg -i pandoc-3.5-1-amd64.deb
+        wget https://github.com/jgm/pandoc/releases/download/3.6/pandoc-3.6-1-amd64.deb
+        sudo dpkg -i pandoc-3.6-1-amd64.deb
     - name: Build 🏗️
       run: |
         cd ${{ github.workspace }}/md_version/
