@@ -280,8 +280,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \ifdefined\yourmention
+\usepackage{accsupp} % We make it impossible to select the mention
+% cf. https://tex.stackexchange.com/a/309878
 \usepackage{draftwatermark}
-\SetWatermarkText{\yourmention}
-\SetWatermarkScale{2.27}
+\SetWatermarkText{\BeginAccSupp{method=escape,ActualText={}}\yourmention\EndAccSupp{}}
+\SetWatermarkScale{2}
 \SetWatermarkColor{augustagrey!20}
 \fi
