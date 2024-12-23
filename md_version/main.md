@@ -193,9 +193,27 @@ You can easily represent formal proofs using \LaTeX's ebproof or bussproof packa
     \end{prooftree}
 \end{center}
 
-# Figures, Tables, (Code) Listings and Landscape Pages
+# Inserting PDFs, Figures, Tables and (Code) Listings
 
-## Figures
+## Inserting PDFs
+
+PDF documents can be inserted using `pdfpages`'s `\includepdf` command.
+For commodity, a `\modifiedincludepdf` is provided:
+
+```tex
+\modifiedincludepdf{options for includepdf}%
+    {label}%
+    {full path to the document}%
+    {title of the document}%
+    {"level" (e.g., section, subsection, etc.)}
+```
+
+Note that using `label.x` will refer to the page `x` of the inserted document (starting with 1): refer to the source code of this current document for an example usage.
+We insert [in the following pages](#pdf:Gluck13) (p. \pageref{pdf:Gluck13.1}--\pageref{pdf:Gluck13.9}) an article as an example of PDF insertion.
+
+\modifiedincludepdf{}{pdf:Gluck13}{pdf/simulation_of_two_ways_pushdown_automata_revisited.pdf}{A paper proving concisely a result in automata theory that helped solve a real programming problem~\cite{DBLP:journals/corr/Gluck13}}{subsection}
+
+## Inserting Figures
 
 Markdown only
 ~  You can easily insert [images and figures](https://pandoc.org/MANUAL.html#images) using Pandoc, as in \autoref{fig:d_un_autre_age}, a painting by [Jérôme Minard](http://jeromeminard.com/travaux/) under [copyleft](https://forceg.jimdofree.com/licence-art-libre/).
@@ -203,7 +221,7 @@ Markdown only
 ![_D'un autre âge_\label{fig:d_un_autre_age}](pictures/D_un_autre_age.jpg){width=80%}
 
 
-## Tables
+## Inserting Tables
 
 Markdown only
 ~  You can write tables using [pandoc's syntax*es*](https://pandoc.org/MANUAL.html#tables), as in Tables \ref{tbl:demo1}, \ref{tbl:demo2} and \ref{tbl:demo3} (all borrowed from <https://www.flutterbys.com.au/stats/tut/tut17.3.html>).
@@ -241,7 +259,7 @@ Markdown only
 +---------------+---------------+--------------------+
 : The price and advantages of fruits \label{tbl:demo3}
 
-## Code Listings
+## Inserting Code Listings
 
 Code is displayed using the listings package.
 Check the "Table 1: Predefined  languages" of the listings package documentation to see the list of supported languages by default.
@@ -278,7 +296,7 @@ for num in {000..2}; do echo "$num"; done
 \lstinputlisting[language=C, caption={"\emph{Hello World}" in C}, label={lst:demo3}]{code/hello_world.c}
 
 
-## Landscape Pages
+# Landscape Pages
 
 You can obtain landscape pages using the landscape package in \LaTeX.
 

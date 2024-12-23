@@ -37,6 +37,6 @@ clean:
 tex: main.md
 	@pandoc $(PANDOC_OPTIONS) -s $< -o main.tex
 	@mkdir -p ../tex_version/
-	@cp -r main.tex fonts/ references/ pictures/ code/ ../tex_version/
+	@cp -r main.tex fonts/ references/ pictures/ pdf/ code/ ../tex_version/
 	@echo "Your .tex version is available at ../tex_version/. Compile with latexmk -pdf -xelatex main.tex"
 

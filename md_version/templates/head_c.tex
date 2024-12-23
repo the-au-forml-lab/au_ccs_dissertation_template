@@ -36,9 +36,9 @@
     \normalsize
 }
 
-%%%%%
-% Emoji support for latex
-%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Emoji support for latex %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage[verbose]{newunicodechar}
 
@@ -297,3 +297,63 @@
 % We recommend using the more modern ebproof over
 % the more "traditional" bussproofs,
 \usepackage{ebproof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Nice frames, for the documents we will be including %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[breakable]{tcolorbox} % Will be used for frame around included documents.
+% https://tex.stackexchange.com/a/66156
+\DeclareRobustCommand\titleforcurrentframe{temp}  % Title for the current page of the frame.
+% This macro is re-defined in \modifiedincludepdf
+% and \modifiedincludetxt
+\newcommand{\mybox}[1]{%
+    \begin{tcolorbox}[
+        colframe=augustablue,
+        colback=white,
+        width={\dimexpr\textwidth},
+        breakable,
+        adjusted title={\hypersetup{citecolor=white}\titleforcurrentframe}
+    ]
+    #1
+    \end{tcolorbox}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Commands to include pdf %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{pdfpages}
+% https://tex.stackexchange.com/questions/198091/get-number-of-pages-of-external-pdf/198095#198095
+\newcommand*{\numberofpages}[1]{%
+    \the\XeTeXpdfpagecount"#1" %
+}
+
+% Counter to add label to individual pages of the pdf.
+% https://tex.stackexchange.com/a/25113
+\newcounter{currentpagecounter}
+\newcounter{totaldocpages}
+% Command to include pdf document.
+% Usage:
+% \modifiedincludepdf{options for includepdf}{label}{full path to the document}{title of the document}{"level" (e.g., section, subsection, etc.)}
+\newcommand{\modifiedincludepdf}[6]{
+    \let\fbox\mybox % includepsf, with the option "frame", use \fbox
+    % to draw the frame. We change the command, to use
+    % our custom frame, that uses tcolorbox.
+    \setcounter{currentpagecounter}{0}
+    \setcounter{totaldocpages}{\numberofpages{#3}}
+    \renewcommand{\titleforcurrentframe}{#4 (p.\ \thecurrentpagecounter\ / \thetotaldocpages) \hfill #6} % #6 acts as a subtitle
+    \includepdf[#1,%
+    width=\textwidth,%
+    pages=-,%
+    frame,
+    clip,
+    pagecommand={
+        \stepcounter{currentpagecounter} % We increment the counter for the number of pages.
+        \label{#2.\thecurrentpagecounter}% We add a label of the form "label.pagenumber".
+    },
+    link = true,
+    linkname = {#2},
+    addtotoc={1, #5, 1, #4, #2} % We add an entry to the table of content.
+    ]{#3}
+}

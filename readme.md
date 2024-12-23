@@ -81,6 +81,7 @@ Please, refer to the [Thesis/PhD Dissertation Preparation Booklet](https://www.a
 - This template uses and redistributes the [TeX Gyre Termes](http://www.gust.org.pl/projects/e-foundry/tex-gyre/termes) font (version 2.004), placed under the [GUST Font License](https://tug.org/fonts/licenses/GUST-FONT-LICENSE.txt), which is an extension of the [The LaTeX Project Public License](https://www.latex-project.org/lppl.txt).
 - This template uses and redistributes the [Symbola](http://web.archive.org/web/20180307012615/http://users.teilar.gr/~g1951d/Symbola.zip) font (version 10.24), which is "free for any use".
 - The file code/hello_world.c is courtesy of Brian Kernighan.
+- The file pdf/simulation_of_two_ways_pushdown_automata_revisited.pdf is courtesy of Robert Glück and under Creative Commons Attribution License.
 - The file pictures/D_un_autre_age.jpg is courtesy of [Jérôme Minard](http://jeromeminard.com/travaux/) and under [copyleft](https://forceg.jimdofree.com/licence-art-libre/).
 - Unless otherwise noted, this template is under [Creative Commons Attribution 4.0 International](LICENSE.md).
 - © [Our contributors](https://github.com/the-au-forml-lab/au_ccs_dissertation_template/graphs/contributors), 2021-2025
