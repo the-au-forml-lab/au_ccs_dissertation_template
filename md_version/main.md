@@ -62,6 +62,7 @@ but you should feel free to erase all of it.
 # Introduction
 
 This document is a guide on how to use it ("how meta!"), and its structure does not reflect the structure of a Thesis: you will need to erase (almost) all of its body and fill it with your own, organized in a coherent manner respectful of your reader's expectations, of your fields guidelines, and in agreement with your advisor.
+Note that The Graduate School recommends using APA [@American_Psychological_Association2023] and that using another style requires approval of its Dean prior to writing the thesis or dissertation.
 
 It is very important that you comply with all of the graduate school's policies [@gradschool_policies].
 This template was carefully crafted with highest standards in mind, and respects all of the graduate schools requirements.

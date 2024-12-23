@@ -22,6 +22,7 @@ subtitle: \yoursubtitle
 institute: Augusta University
 biblatexoptions:
     - backend=biber
+    - style=apa
 bibliography: ./references/references.bib
 link-citations: true
 suppress-bibliography: true
