@@ -209,7 +209,7 @@ For commodity, a `\modifiedincludepdf` is provided:
 ```
 
 Note that using `label.x` will refer to the page `x` of the inserted document (starting with 1): refer to the source code of this current document for an example usage.
-We insert [in the following pages](#pdf:Gluck13) (p. \pageref{pdf:Gluck13.1}--\pageref{pdf:Gluck13.9}) an article as an example of PDF insertion.
+We insert [in the following pages](#pdf:Gluck13) (pp. \pageref{pdf:Gluck13.1}--\pageref{pdf:Gluck13.9}) an article as an example of PDF insertion.
 
 \modifiedincludepdf{}{pdf:Gluck13}{pdf/simulation_of_two_ways_pushdown_automata_revisited.pdf}{A paper proving concisely a result in automata theory that helped solve a real programming problem~\cite{DBLP:journals/corr/Gluck13}}{subsection}
 
