@@ -111,7 +111,7 @@ This is a sub-paragraph.
 
 ## Debugging
 
-If this template does not "work" as expected, feel free to [open an issue](https://github.com/the-au-forml-lab/au_ccs_dissertation_template/issues) or reach out to <caubert@augusta.edu>, after having looked at `aux/input.log` as (probably) indicated by latexmk.
+If this template does not "work" as expected, refer to the source code of the present document, read `aux/input.log` (md version) or `main.log` (tex version), then feel free to [open an issue](https://github.com/the-au-forml-lab/au_ccs_dissertation_template/issues) or reach out to <caubert@augusta.edu>.
 
 # References and Bibliography
 
