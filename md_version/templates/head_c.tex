@@ -100,21 +100,6 @@
     }
 }
 
-% For sideways figures and landscape pages.
-\usepackage{pdflscape}
-
-% For proper quotations.
-\usepackage{csquotes}
-
-% For math. environments
-\usepackage{mathtools}
-\usepackage{amsthm}
-
-% For the BibTex logo, courtesy of https://tex.stackexchange.com/a/198472
-\def\BibTeX{\textrm{B\kern-.05em\textsc{i\kern-.025em b}\kern-.08em T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
-
-\newtheorem{theorem}{Theorem}
-
 %%%%%%%%%%%%%%%%%%%%%
 % Code Presentation %
 %%%%%%%%%%%%%%%%%%%%%
@@ -341,3 +326,23 @@
     addtotoc={1, #5, 1, #4, #2} % We add an entry to the table of content.
     ]{#3}
 }
+
+%%%%%%%%%
+% Misc. %
+%%%%%%%%%
+
+% To set maximum width and height, courtesy of https://github.com/jgm/pandoc-templates/blob/master/default.latex.orig
+\makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+    \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+
+\usepackage{pdflscape}  % For sideways figures and landscape pages.
+\usepackage{csquotes}   % For proper quotations.
+\usepackage{mathtools}  % For math. environments
+\usepackage{amsthm}     % For math. environments
+
+% For the BibTex logo, courtesy of https://tex.stackexchange.com/a/198472
+\def\BibTeX{\textrm{B\kern-.05em\textsc{i\kern-.025em b}\kern-.08em T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\newtheorem{theorem}{Theorem}
