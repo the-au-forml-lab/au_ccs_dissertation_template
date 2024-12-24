@@ -263,7 +263,7 @@ Markdown only
 ## Inserting Code Listings
 
 Code is displayed using the listings package.
-Check the "Table 1: Predefined  languages" of the listings package documentation to see the list of supported languages by default.
+Check the ["Table 1: Predefined  languages" of the listings package documentation](https://texdoc.org/serve/listings.pdf/0#table.1) to see the list of supported languages by default.
 
 Markdown only
 ~  Your can display code using [various possible syntaxes](https://pandoc.org/MANUAL.html#verbatim-code-blocks).
@@ -304,7 +304,7 @@ You can obtain landscape pages using the landscape package in \LaTeX.
 Markdown only
 ~  This feature is not accessible in pure markdown: if you want to have landscape pages, you need to use \LaTeX commands in your document.
 
-Note that the drawing presented in \autoref{fig:language} was obtained using \LaTeX's package tiKz, and that the source code is shared in the pictures folder.
+Note that the drawing presented in \autoref{fig:language} was obtained using [\LaTeX's package tiKz](https://tikz.dev/), and that the source code is shared in the pictures folder.
 
 \begin{landscape}
     \vspace*{\fill} 
