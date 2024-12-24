@@ -40,3 +40,8 @@ tex: main.md
 	@cp -r main.tex fonts/ references/ pictures/ pdf/ code/ ../tex_version/
 	@echo "Your .tex version is available at ../tex_version/. Compile with latexmk -pdf -xelatex main.tex"
 
+# This recipe checks that the md and tex version produce identical pdfs.
+check: | tex main.pdf
+	@cd ../tex_version/
+	@latexmk -pdf -silent -xelatex main.tex
+	@cmp --silent main.pdf ../md_version/main.pdf && echo '### SUCCESS: Files Are Identical! ###' || echo '### WARNING: Files Are Different! ###'
