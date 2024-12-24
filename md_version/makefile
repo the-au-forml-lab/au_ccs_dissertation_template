@@ -39,6 +39,7 @@ tex: main.md
 	@pandoc $(PANDOC_OPTIONS) -s $< -o main.tex
 	@mkdir -p ../tex_version/
 	@cp -r main.tex fonts/ references/ pictures/ pdf/ code/ ../tex_version/
+	sed -i '1i % !TeX program = xelatex\n% !BIB program = biber\n\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n% Welcome! Do not anything until "%%% To be filled %" %\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n' ../tex_version/main.tex	
 	@echo "Your .tex version is available at ../tex_version/. Compile with latexmk -pdf -xelatex main.tex"
 
 # This recipe checks that the md and tex version produce identical pdfs.
