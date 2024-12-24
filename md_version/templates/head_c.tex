@@ -86,15 +86,6 @@
 % This allow the links to be visually present only if the document is viewed on a screen.
 % Colored distribution inspired by https://tex.stackexchange.com/a/526148
 
-% This is to add color to the footnotes.
-\makeatletter
-\def\@footnotecolor{red}
-\define@key{Hyp}{footnotecolor}{%
- \HyColor@HyperrefColor{#1}\@footnotecolor%
-}
-\patchcmd{\@footnotemark}{\hyper@linkstart{link}}{\hyper@linkstart{footnote}}{}{}
-\makeatother
-
 % Setup new colors
 \AtEndPreamble{
     \hypersetup{
@@ -109,8 +100,6 @@
         footnotecolor=augustagrey,
     }
 }
-
-
 
 % For sideways figures and landscape pages.
 \usepackage{pdflscape}
