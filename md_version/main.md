@@ -81,7 +81,7 @@ Markdown only
 
 ## Title Levels 
 
-As indicated in the koma-script manual, the class `scrbook` that is used for this document has access to 6 levels of titles:
+As indicated in the [Section 3.6 of the koma-script manual](https://mirror.las.iastate.edu/tex-archive/macros/latex/contrib/koma-script/doc/scrguide-en.pdf#section.3.16), the `scrbook` class that is used for this document has access to 6 levels of titles:
 
 ```
 \chapter{Test}
@@ -95,7 +95,7 @@ As indicated in the koma-script manual, the class `scrbook` that is used for thi
 Only Chapters, Sections and Subsections will appear in the table of contents, by design.
 
 Markdown only
-~ Note that pandoc's `#` corresponds to Chapter, and that increasing the number of `#` increases the level of heading.
+~ pandoc follows the [ATX heading](https://spec.commonmark.org/0.31.2/#atx-heading) convention, and has `#` correspond to Chapter, and that increasing the number of `#` increases the level of heading.
 
 ### Subsection
 
