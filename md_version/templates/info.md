@@ -3,6 +3,7 @@ classoption:
     - oneside
     - BCOR = 0 pt
     - singlespacing = true 
+    - numbers = noenddot
 mainfont: TeXGyreTermes
 mainfontoptions:
 - Path=fonts/
