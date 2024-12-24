@@ -16,12 +16,6 @@
 \usepackage[english]{datetime2}                    % To extract the month and year from the date.
 \usepackage{chngcntr}                              % To obtain a "global numbering" of tables and figures.
 \usepackage{xpatch}                                % To patch some commands, for the title page.
-% Option to set maximum width, courtesy of https://github.com/jgm/pandoc-templates/blob/master/default.latex.orig
-\makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
 
 %%%%%%%%%%%%%%
 % Cover page %
@@ -59,7 +53,7 @@
 \makeatletter
     \pretocmd{\yourdate}{%
         \vspace{1em}
-        Submitted to the Faculty of the Graduate School\\
+        Submitted to the Faculty of The Graduate School\\
         of Augusta University in partial fulfillment\\
         of the Requirements of the Degree of\\
         \iftoggle{ms}{Master of Science}{Doctor of Philosophy} % This toggle will display either 
