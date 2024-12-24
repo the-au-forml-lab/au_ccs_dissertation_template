@@ -26,6 +26,8 @@ and must be written in LaTeX, so you can create new lines
 using "\\" and "\\[2em]" if you want more space.
 -->
 
+\frontmatter
+
 \dedication{
 This part serves two purposes.\\[1em]
 To write the acknowledgments (as a \enquote{\emph{Thank you note}}).
@@ -50,8 +52,7 @@ It consists of a succinct summary of the thesis/dissertation and the conclusions
 Opinions should be omitted.
 \end{abstract}
 
-\cleardoublepage
-\pagenumbering{arabic}
+\mainmatter
 
 <!--
 All the rest of the document can be written either in Latex,
@@ -365,7 +366,7 @@ To declare other unicode symbols as having to be displayed using the Symbola fon
 ⚠ Do not edit ⚠
 the three lines below.
 -->
-\clearpage
+\backmatter
 \printbibliography[label=chap:references, title=References]
 \let\printbibliography\relax
 <!--

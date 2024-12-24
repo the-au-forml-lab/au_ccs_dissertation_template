@@ -33,6 +33,7 @@ watch :
 clean:
 	rm -f main.pdf
 	rm -rf aux
+	rm -rf ../tex_version/
 
 tex: main.md
 	@pandoc $(PANDOC_OPTIONS) -s $< -o main.tex
