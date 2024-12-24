@@ -43,7 +43,9 @@ tex: main.md
 	@echo "Your .tex version is available at ../tex_version/. Compile with latexmk -pdf -xelatex main.tex"
 
 # This recipe checks that the md and tex version produce identical pdfs.
-check: | tex main.pdf
-	@cd ../tex_version/
-	@latexmk -pdf -silent -xelatex main.tex
-	@cmp --silent main.pdf ../md_version/main.pdf && echo '### SUCCESS: Files Are Identical! ###' || echo '### WARNING: Files Are Different! ###'
+# Requires to place compare-pdfs.sh in root folder,
+# script available at https://github.com/iSimsi/compare-pdfs
+check: tex main.pdf
+	latexmk -cd -pdf -silent -xelatex ../tex_version/main.tex
+	cd ../ && ./compare-pdfs.sh md_version/main.pdf tex_version/main.pdf
+	
