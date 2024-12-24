@@ -46,8 +46,8 @@ The keywords will be automatically inserted at the end.
 
 \begin{abstract}
 The abstract must not exceed 350 words.
-It must consist of the briefest possible summary of the thesis / dissertation and the conclusions reached.
-Explanatory matter and opinion must be omitted.
+It consists of a succinct summary of the thesis/dissertation and the conclusions reached.
+Opinions should be omitted.
 \end{abstract}
 
 \cleardoublepage
@@ -66,7 +66,11 @@ Note that The Graduate School recommends using APA [@American_Psychological_Ass
 
 It is very important that you comply with all of the graduate school's policies [@gradschool_policies].
 This template was carefully crafted with highest standards in mind, and respects all of the graduate schools requirements.
-You can find additional information in the ["Thesis/Dissertation Preparation Booklet"](https://augustauniversity.app.box.com/s/vj0ygpy8tvyqmsbae8y0qp9767ta7jb9), in the ["Electronic Theses and Dissertations (ETD)"](https://guides.augusta.edu/etd) help page, and in [this template's repository](https://github.com/the-au-forml-lab/au_ccs_dissertation_template).
+You can find additional information in the ["Thesis/Dissertation Preparation Booklet"](https://augustauniversity.app.box.com/s/vj0ygpy8tvyqmsbae8y0qp9767ta7jb9),
+<!--
+also at 
+https://augustauniversity.app.box.com/s/pppatek4czrmc14gxvxhwb405bnbiq76
+--> in the ["Electronic Theses and Dissertations (ETD)"](https://guides.augusta.edu/etd) help page, and in [this template's repository](https://github.com/the-au-forml-lab/au_ccs_dissertation_template).
 
 Normally, what you can and cannot edit is clearly labeled in the source code, either at the beginning of the file, or with 
 
