@@ -15,6 +15,7 @@
 % https://tex.stackexchange.com/a/297655
 \usepackage[english]{datetime2}                    % To extract the month and year from the date.
 \usepackage{chngcntr}                              % To obtain a "global numbering" of tables and figures.
+\usepackage{xpatch}
 
 % Package to display images
 \usepackage{graphicx}
@@ -29,12 +30,11 @@
 % Cover page %
 %%%%%%%%%%%%%%
 
-
 % We add some space after the subtitle if it
 % is defined, after the title if not.
 \ifdefined\yoursubtitle
     \makeatletter
-        \apptocmd{\@subtitle}{\par}{}{}
+        \xapptocmd{\@subtitle}{\par}{}{}
     \makeatother
     \else
     \let\yoursubtitle\par\vspace{1em}
@@ -44,7 +44,7 @@
 % before your name, and change the font 
 % to 16pts.
 \makeatletter
-    \pretocmd{\@author}{By \\}{}{}
+    \xpatchcmd{\maketitle}{\@author}{By \\ \@author}{}{}
 \makeatother
 
 % The following extract the month and year
