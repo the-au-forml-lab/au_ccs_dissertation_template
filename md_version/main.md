@@ -62,11 +62,11 @@ but you should feel free to erase all of it.
 # Introduction
 
 This document is a guide on how to use it ("how meta!"), and its structure does not reflect the structure of a Thesis: you will need to erase (almost) all of its body and fill it with your own, organized in a coherent manner respectful of your reader's expectations, of your fields guidelines, and in agreement with your advisor.
-Note that The Graduate School recommends using APA [@American_Psychological_Association2023] and that using another style requires approval of its Dean prior to writing the thesis or dissertation.
+Note that The Graduate School recommends using APA [@American_Psychological_Association2023], that this document is set-up to use it, and that using another style requires approval of the Dean of The Graduate School prior to writing the thesis or dissertation.
 
 It is very important that you comply with all of the graduate school's policies [@gradschool_policies].
 This template was carefully crafted with highest standards in mind, and respects all of the graduate schools requirements.
-You can find additional information on the ["The Graduate School Reference Center: ETD Templates & Preparation Booklet"](https://guides.augusta.edu/graduateschool/template) or, more generally, on [this template's repository](https://github.com/aubertc/au_ccs_dissertation_template).
+You can find additional information in the ["Thesis/Dissertation Preparation Booklet"](https://augustauniversity.app.box.com/s/vj0ygpy8tvyqmsbae8y0qp9767ta7jb9), in the ["Electronic Theses and Dissertations (ETD)"](https://guides.augusta.edu/etd) help page, and in [this template's repository](https://github.com/the-au-forml-lab/au_ccs_dissertation_template).
 
 Normally, what you can and cannot edit is clearly labeled in the source code, either at the beginning of the file, or with 
 
@@ -111,7 +111,7 @@ This is a sub-paragraph.
 
 ## Debugging
 
-If this template does not "work" as expected, feel free to [open an issue](https://github.com/aubertc/au_ccs_dissertation_template/issues) or reach out to <caubert@augusta.edu>, after having looked at `aux/input.log` as (probably) indicated by latexmk.
+If this template does not "work" as expected, feel free to [open an issue](https://github.com/the-au-forml-lab/au_ccs_dissertation_template/issues) or reach out to <caubert@augusta.edu>, after having looked at `aux/input.log` as (probably) indicated by latexmk.
 
 # References and Bibliography
 
