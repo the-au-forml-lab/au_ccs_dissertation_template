@@ -53,6 +53,8 @@ Opinions should be omitted.
 \end{abstract}
 
 \mainmatter
+\pagestyle{plain}
+
 
 <!--
 All the rest of the document can be written either in Latex,
