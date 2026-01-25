@@ -226,21 +226,21 @@
     {\contentsname}%
     {Table of Contents}                    % We rename the table of contents.
     \hypertarget{tableofcontents}{}\bookmark[level=chapter,dest=tableofcontents]{\contentsname}
-    \tableofcontents                        % Table of contents.
+    \tableofcontents\clearpage                 % Table of contents.
     \iftotaltables                             % If there are tables in the document…
         \hypertarget{listoftables}{}\bookmark[level=chapter,dest=listoftables]{\listtablename}   %…we add the List of Tables to the pdf toc.
-        \listoftables                          % …and write it.
+        \listoftables\clearpage              % …and write it.
     \fi
     \iftotalfigures                          % If there are figures in the document…
         \hypertarget{listoffigures}{}\bookmark[level=chapter,dest=listoffigures]{\listfigurename}   % …and add it to the pdf toc.
-        \listoffigures                         % …write out the List of Figures
+        \listoffigures\clearpage             % …write out the List of Figures
         \fi
     \iftotallstlistings                      % If there are listings in the document…
         \renewcommand{\lstlistlistingname}%
         {List of Listings}                     % …we rename the simple "Listings" to "List of Listings"
         % https://stackoverflow.com/a/2709986
         \hypertarget{listoflistings}{}\bookmark[level=chapter,dest=listoflistings]{\lstlistlistingname}   %…we add the List of Tables to the pdf toc.
-        \lstlistoflistings                     % …write out the List of Listings.
+        \lstlistoflistings\clearpage         % …write out the List of Listings.
     \fi
 }
 \makeatother
