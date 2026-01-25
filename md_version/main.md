@@ -47,8 +47,7 @@ The keywords will be automatically inserted at the end.
 -->
 
 \begin{abstract}
-The abstract must not exceed 350 words.
-It consists of a succinct summary of the thesis/dissertation and the conclusions reached.
+The abstract consists of a succinct summary of the thesis/dissertation and the conclusions reached.
 Opinions should be omitted.
 \end{abstract}
 
